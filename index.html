@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>한국사 도시건설 - 역사 심시티</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    background: #1a1a2e; color: #eee; font-family: 'Segoe UI', sans-serif;
+    overflow: hidden; touch-action: none; user-select: none;
+}
+
+#gameCanvas { display: block; cursor: pointer; }
+
+/* Top HUD */
+#hud {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 100%);
+    padding: 8px 12px; display: flex; flex-wrap: wrap; gap: 6px 14px;
+    align-items: center; z-index: 10; font-size: 13px;
+}
+.res-item { display: flex; align-items: center; gap: 4px; }
+.res-icon { font-size: 16px; }
+.res-val { font-weight: bold; color: #ffd700; min-width: 30px; }
+.res-rate { font-size: 11px; color: #8f8; }
+.res-rate.neg { color: #f88; }
+
+#era-label {
+    background: linear-gradient(135deg, #8b5e3c, #c4923a);
+    padding: 4px 12px; border-radius: 14px; font-weight: bold;
+    font-size: 14px; letter-spacing: 1px; margin-right: 8px;
+}
+#era-progress {
+    height: 6px; background: #333; border-radius: 3px; width: 100px; overflow: hidden;
+}
+#era-progress-bar {
+    height: 100%; background: linear-gradient(90deg, #4caf50, #8bc34a);
+    transition: width 0.5s;
+}
+#next-era-btn {
+    background: #ff9800; border: none; color: #fff; padding: 4px 10px;
+    border-radius: 10px; font-size: 12px; cursor: pointer; font-weight: bold;
+    display: none; animation: pulse 1s infinite;
+}
+@keyframes pulse { 0%,100%{ transform: scale(1); } 50%{ transform: scale(1.08); } }
+
+/* Building Panel */
+#buildPanel {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: rgba(0,0,0,0.9); z-index: 10;
+    border-top: 2px solid #555;
+}
+#buildTabs {
+    display: flex; overflow-x: auto; gap: 2px; padding: 4px;
+    scrollbar-width: none;
+}
+#buildTabs::-webkit-scrollbar { display: none; }
+.build-tab {
+    flex-shrink: 0; padding: 6px 10px; background: #2a2a3e;
+    border: 2px solid transparent; border-radius: 8px; cursor: pointer;
+    text-align: center; min-width: 70px; transition: all 0.2s;
+}
+.build-tab:hover { background: #3a3a5e; }
+.build-tab.selected { border-color: #ffd700; background: #3a3a5e; }
+.build-tab .b-icon { font-size: 22px; display: block; }
+.build-tab .b-name { font-size: 10px; color: #ccc; white-space: nowrap; }
+.build-tab .b-cost { font-size: 9px; color: #fa0; }
+
+#buildInfo {
+    display: none; padding: 6px 10px; background: #222; font-size: 12px;
+    border-top: 1px solid #444;
+}
+#buildInfo .bi-title { font-weight: bold; color: #ffd700; font-size: 14px; }
+#buildInfo .bi-desc { color: #aaa; margin-top: 2px; }
+
+/* Popup */
+#popup-overlay {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.7); z-index: 100;
+    justify-content: center; align-items: center;
+}
+#popup-overlay.show { display: flex; }
+#popup {
+    background: linear-gradient(145deg, #2a2a3e, #1e1e30);
+    border: 2px solid #c4923a; border-radius: 16px;
+    padding: 20px; max-width: 400px; width: 90%;
+    max-height: 80vh; overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+#popup .p-icon { font-size: 48px; text-align: center; }
+#popup .p-title { font-size: 20px; font-weight: bold; color: #ffd700; text-align: center; margin: 8px 0; }
+#popup .p-era { text-align: center; color: #c4923a; font-size: 13px; margin-bottom: 10px; }
+#popup .p-history {
+    background: rgba(255,255,255,0.05); border-radius: 10px;
+    padding: 12px; font-size: 14px; line-height: 1.7; color: #ddd;
+    border-left: 3px solid #ffd700;
+}
+#popup .p-stats { margin-top: 10px; font-size: 12px; color: #aaa; }
+#popup .p-close {
+    display: block; margin: 14px auto 0; background: #c4923a; border: none;
+    color: #fff; padding: 8px 24px; border-radius: 20px; font-size: 14px;
+    cursor: pointer; font-weight: bold;
+}
+#popup .p-close:hover { background: #e0a84a; }
+
+/* Event popup */
+#event-overlay {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.8); z-index: 200;
+    justify-content: center; align-items: center;
+}
+#event-overlay.show { display: flex; }
+#event-box {
+    background: linear-gradient(145deg, #1a3a1a, #0e2e0e);
+    border: 3px solid #4caf50; border-radius: 16px;
+    padding: 24px; max-width: 420px; width: 90%; text-align: center;
+    box-shadow: 0 0 40px rgba(76,175,80,0.3);
+}
+#event-box h2 { color: #4caf50; font-size: 22px; margin-bottom: 6px; }
+#event-box .ev-sub { color: #8bc34a; font-size: 14px; margin-bottom: 12px; }
+#event-box .ev-desc { color: #ccc; font-size: 14px; line-height: 1.7; margin-bottom: 16px; }
+#event-box button {
+    background: #4caf50; border: none; color: #fff; padding: 10px 30px;
+    border-radius: 20px; font-size: 16px; cursor: pointer; font-weight: bold;
+}
+
+/* Controls */
+#controls {
+    position: fixed; top: 50px; right: 10px; z-index: 10;
+    display: flex; flex-direction: column; gap: 4px;
+}
+#controls button {
+    background: rgba(0,0,0,0.7); border: 1px solid #555; color: #fff;
+    width: 36px; height: 36px; border-radius: 8px; font-size: 18px;
+    cursor: pointer;
+}
+#controls button:hover { background: rgba(100,100,100,0.7); }
+
+/* Delete mode */
+#delete-btn.active { background: rgba(200,0,0,0.7) !important; border-color: #f00 !important; }
+
+/* Toast */
+.toast {
+    position: fixed; top: 55px; left: 50%; transform: translateX(-50%);
+    background: rgba(0,0,0,0.85); color: #ffd700; padding: 8px 18px;
+    border-radius: 20px; font-size: 13px; z-index: 50;
+    animation: toastAnim 2s forwards; pointer-events: none;
+}
+@keyframes toastAnim {
+    0% { opacity: 0; top: 55px; }
+    15% { opacity: 1; top: 50px; }
+    70% { opacity: 1; top: 50px; }
+    100% { opacity: 0; top: 40px; }
+}
+
+/* Speed control */
+#speed-ctrl {
+    position: fixed; top: 50px; left: 10px; z-index: 10;
+    display: flex; gap: 2px;
+}
+#speed-ctrl button {
+    background: rgba(0,0,0,0.7); border: 1px solid #555; color: #aaa;
+    padding: 4px 10px; border-radius: 6px; font-size: 12px; cursor: pointer;
+}
+#speed-ctrl button.active { color: #ffd700; border-color: #ffd700; }
+</style>
+</head>
+<body>
+
+<!-- HUD -->
+<div id="hud">
+    <span id="era-label">고조선</span>
+    <div id="era-progress"><div id="era-progress-bar" style="width:0%"></div></div>
+    <button id="next-era-btn" onclick="advanceEra()">다음 시대 ></button>
+    <div class="res-item"><span class="res-icon">👥</span><span class="res-val" id="r-pop">50</span><span class="res-rate" id="rr-pop"></span></div>
+    <div class="res-item"><span class="res-icon">🌾</span><span class="res-val" id="r-food">100</span><span class="res-rate" id="rr-food"></span></div>
+    <div class="res-item"><span class="res-icon">💰</span><span class="res-val" id="r-gold">200</span><span class="res-rate" id="rr-gold"></span></div>
+    <div class="res-item"><span class="res-icon">😊</span><span class="res-val" id="r-happy">50</span></div>
+    <div class="res-item"><span class="res-icon">🏛️</span><span class="res-val" id="r-culture">0</span></div>
+    <div class="res-item" style="font-size:11px;color:#aaa;"><span id="year-display">기원전 2333년</span></div>
+</div>
+
+<!-- Speed -->
+<div id="speed-ctrl">
+    <button onclick="setSpeed(0)">⏸</button>
+    <button class="active" onclick="setSpeed(1)">▶</button>
+    <button onclick="setSpeed(2)">▶▶</button>
+    <button onclick="setSpeed(3)">▶▶▶</button>
+</div>
+
+<!-- Controls -->
+<div id="controls">
+    <button onclick="zoomIn()" title="확대">+</button>
+    <button onclick="zoomOut()" title="축소">-</button>
+    <button id="delete-btn" onclick="toggleDelete()" title="철거">🗑️</button>
+</div>
+
+<!-- Build panel -->
+<div id="buildPanel">
+    <div id="buildInfo">
+        <span class="bi-title"></span>
+        <span class="bi-desc"></span>
+    </div>
+    <div id="buildTabs"></div>
+</div>
+
+<!-- Info popup -->
+<div id="popup-overlay" onclick="closePopup(event)">
+    <div id="popup">
+        <div class="p-icon"></div>
+        <div class="p-title"></div>
+        <div class="p-era"></div>
+        <div class="p-history"></div>
+        <div class="p-stats"></div>
+        <button class="p-close" onclick="closePopup()">닫기</button>
+    </div>
+</div>
+
+<!-- Era event -->
+<div id="event-overlay">
+    <div id="event-box">
+        <h2 id="ev-title"></h2>
+        <div class="ev-sub" id="ev-sub"></div>
+        <div class="ev-desc" id="ev-desc"></div>
+        <button onclick="closeEvent()">시작하기!</button>
+    </div>
+</div>
+
+<canvas id="gameCanvas"></canvas>
+
+<script>
+// ===================== DATA =====================
+const ERAS = ['고조선','삼국시대','고려','조선','근대'];
+const ERA_COLORS = ['#8B7355','#5B8C5A','#4A7B9D','#8B4513','#696969'];
+const ERA_YEARS = ['기원전 2333년','기원전 57년','918년','1392년','1876년'];
+const ERA_BG = ['#3a5a3a','#2a4a5a','#3a3a5a','#4a3a2a','#3a3a3a'];
+
+const BUILDINGS = {
+'고조선': [
+    { id:'umjip', name:'움집', icon:'🏕️', cost:{gold:30,food:10}, provide:{pop:5,food:2}, size:1,
+      history:'움집은 땅을 파고 그 위에 풀이나 갈대로 지붕을 만든 집이에요. 고조선 사람들은 이런 움집에서 가족과 함께 살았어요. 바닥을 땅보다 낮게 파서 겨울에도 따뜻했답니다!'},
+    { id:'goindol', name:'고인돌', icon:'🪨', cost:{gold:50}, provide:{culture:5,happy:3}, size:1,
+      history:'고인돌은 큰 돌로 만든 무덤이에요. 힘센 지도자가 죽으면 마을 사람들이 모여서 아주 큰 돌을 옮겨 무덤을 만들었어요. 한국에는 세계에서 가장 많은 고인돌이 있어요! 전 세계 고인돌의 40%가 한국에 있답니다.'},
+    { id:'mokchaek', name:'목책', icon:'🏗️', cost:{gold:40}, provide:{happy:2,pop:2}, size:1,
+      history:'목책은 나무로 만든 울타리예요. 마을 주위에 뾰족한 나무 기둥을 빙 둘러 세워서 야생동물이나 적들이 들어오지 못하게 막았어요. 마을을 지키는 첫 번째 성벽인 셈이죠!'},
+    { id:'granary', name:'곡물창고', icon:'🏚️', cost:{gold:45,food:20}, provide:{food:8}, size:1,
+      history:'곡물창고는 수확한 곡식을 보관하는 곳이에요. 가을에 거둔 쌀, 조, 기장을 여기에 모아두고 겨울에 꺼내 먹었어요. 쥐가 못 들어오게 높은 기둥 위에 올려 짓기도 했답니다!'},
+    { id:'forge_bronze', name:'대장간(청동)', icon:'🔨', cost:{gold:80}, provide:{gold:3,culture:3}, size:1,
+      history:'청동 대장간에서는 구리와 주석을 섞어 청동을 만들었어요. 이 청동으로 거울, 방울, 칼, 화살촉을 만들었죠. 비파형 동검은 고조선의 대표적인 청동 무기예요!'},
+    { id:'altar', name:'제단', icon:'⛩️', cost:{gold:60}, provide:{culture:8,happy:5}, size:1,
+      history:'제단은 하늘에 제사를 지내는 곳이에요. 고조선 사람들은 하늘의 신(환인, 환웅)을 믿었고, 10월에 "무천"이라는 큰 축제를 열어 하늘에 감사했어요. 단군왕검이 나라를 세운 이야기도 하늘 신앙과 관련있어요!'},
+    { id:'well', name:'우물', icon:'🕳️', cost:{gold:25}, provide:{pop:3,happy:2,food:1}, size:1,
+      history:'우물은 깨끗한 물을 마시기 위해 땅을 깊이 판 것이에요. 마을 사람들은 우물가에 모여서 물도 길고, 이야기도 나누었어요. 우물이 있는 곳에 마을이 생겼답니다!'},
+    { id:'pottery', name:'토기가마', icon:'🏺', cost:{gold:55}, provide:{gold:4,culture:4}, size:1,
+      history:'토기가마에서는 흙으로 그릇을 빚어 불에 구웠어요. 빗살무늬토기는 빗처럼 생긴 무늬가 있는 그릇인데, 음식을 담거나 곡식을 저장하는 데 썼어요. 신석기시대부터 만들었답니다!'},
+],
+'삼국시대': [
+    { id:'giwa', name:'기와집', icon:'🏠', cost:{gold:50,food:15}, provide:{pop:8,happy:2}, size:1,
+      history:'기와집은 흙으로 만든 기와를 지붕에 얹은 집이에요. 삼국시대에는 귀족이나 높은 사람들이 기와집에 살았어요. 기와는 비가 새지 않고 오래가서 아주 좋은 건축 재료였답니다!'},
+    { id:'wall', name:'성벽', icon:'🏰', cost:{gold:80}, provide:{happy:5,pop:3}, size:1,
+      history:'성벽은 돌이나 흙으로 높이 쌓은 벽이에요. 적이 쳐들어오면 성벽 위에서 화살을 쏘며 막았어요. 고구려의 안시성은 당나라 대군을 88일이나 막아낸 유명한 성이에요!'},
+    { id:'pagoda', name:'불탑', icon:'🗼', cost:{gold:100}, provide:{culture:10,happy:5}, size:1,
+      history:'불탑은 부처님의 가르침을 기리기 위해 세운 탑이에요. 삼국시대에 불교가 들어오면서 많이 만들었어요. 백제의 미륵사지 석탑은 우리나라에서 가장 크고 오래된 석탑이에요!'},
+    { id:'gwana', name:'관아', icon:'🏛️', cost:{gold:70}, provide:{gold:5,happy:3,pop:3}, size:1,
+      history:'관아는 나라의 관리들이 일하는 관청이에요. 여기서 세금을 걷고, 재판을 하고, 마을의 일을 결정했어요. 요즘의 시청이나 구청 같은 곳이라고 생각하면 돼요!'},
+    { id:'market3', name:'시장', icon:'🏪', cost:{gold:60,food:10}, provide:{gold:8,happy:4,food:3}, size:1,
+      history:'시장은 물건을 사고파는 곳이에요. 삼국시대에는 경주의 동시(동쪽 시장)와 서시(서쪽 시장)가 유명했어요. 비단, 곡식, 그릇 등을 사고팔았고, 다른 나라 상인들도 왔답니다!'},
+    { id:'armory', name:'무기고', icon:'⚔️', cost:{gold:90}, provide:{happy:4,culture:2}, size:1,
+      history:'무기고는 칼, 활, 창, 갑옷 등 무기를 만들고 보관하는 곳이에요. 삼국시대에는 고구려, 백제, 신라가 자주 전쟁을 해서 좋은 무기가 아주 중요했어요. 가야의 철제 갑옷은 특히 유명했답니다!'},
+    { id:'stable', name:'말구간', icon:'🐴', cost:{gold:55,food:20}, provide:{pop:2,happy:3,food:-3}, size:1,
+      history:'말구간은 말을 기르는 곳이에요. 고구려는 말 타기를 아주 잘해서 "기마 민족"이라고 불렸어요. 전쟁할 때 말을 타고 빠르게 달리며 활을 쏘는 기마병이 매우 강했답니다!'},
+    { id:'cheom', name:'첨성대', icon:'🔭', cost:{gold:120}, provide:{culture:15,happy:8}, size:1,
+      history:'첨성대는 신라 선덕여왕 때 만든 별을 관찰하는 건물이에요. 돌 362개로 쌓았는데, 이건 1년의 날수와 비슷해요! 동양에서 가장 오래된 천문대로, 경주에 가면 지금도 볼 수 있어요.'},
+],
+'고려': [
+    { id:'goryeo_house', name:'기와지붕집', icon:'🏘️', cost:{gold:60,food:15}, provide:{pop:10,happy:3}, size:1,
+      history:'고려시대에는 기와집이 더 발전했어요. 온돌(바닥 난방)이 널리 퍼져서 겨울에도 따뜻한 방에서 지낼 수 있었어요. 마루와 온돌방을 함께 가진 집이 이때부터 생겨났답니다!'},
+    { id:'tripitaka', name:'팔만대장경 보관소', icon:'📚', cost:{gold:150}, provide:{culture:20,happy:10}, size:1,
+      history:'팔만대장경은 부처님의 가르침을 나무판에 새긴 것이에요. 무려 81,258장이나 돼요! 몽골이 쳐들어왔을 때 부처님의 힘으로 나라를 지키려고 16년이나 걸려 만들었어요. 지금도 해인사에 잘 보관되어 있어요!'},
+    { id:'celadon', name:'청자가마', icon:'🫖', cost:{gold:100}, provide:{gold:10,culture:12}, size:1,
+      history:'고려청자는 세계에서 가장 아름다운 도자기 중 하나예요. 비취색(파란 초록빛)이 특히 유명해요. 상감 기법이라고 해서 도자기에 무늬를 파고 다른 색 흙을 넣는 기술은 고려만의 특별한 기술이었어요!'},
+    { id:'ceramic_market', name:'도자기 시장', icon:'🏬', cost:{gold:80,food:15}, provide:{gold:12,happy:5,food:3}, size:1,
+      history:'고려의 도자기는 너무 아름다워서 중국 상인들도 사러 왔어요. 벽란도라는 항구에서는 아라비아(지금의 중동) 상인들도 와서 무역했어요. "코리아(Korea)"라는 이름도 "고려"에서 온 거예요!'},
+    { id:'temple', name:'사원', icon:'🛕', cost:{gold:90}, provide:{culture:10,happy:8,pop:2}, size:1,
+      history:'고려는 불교의 나라였어요. 절(사원)이 아주 많았고, 스님들이 공부하고 수행하는 중요한 곳이었어요. 나라에서 큰 행사를 열 때도 절에서 했고, 연등회라는 등불 축제도 유명했어요!'},
+    { id:'gate', name:'관문', icon:'🚪', cost:{gold:70}, provide:{gold:5,happy:4}, size:1,
+      history:'관문은 도시나 나라의 출입구예요. 여기서 들어오는 사람과 물건을 검사하고, 세금(통행세)을 걷었어요. 적이 오면 문을 굳게 닫아 막았죠. 개성의 선죽교 근처에도 관문이 있었어요!'},
+    { id:'shipyard_g', name:'조선소', icon:'🚢', cost:{gold:110,food:20}, provide:{gold:8,culture:5}, size:1,
+      history:'고려의 조선소에서는 배를 만들었어요. 고려는 바다를 통해 중국, 일본, 아라비아와 무역했어요. 또 왜구(일본 해적)를 막기 위해 전투선도 만들었어요. 최무선 장군은 화약을 이용해 왜구를 물리쳤답니다!'},
+    { id:'fortress', name:'성곽', icon:'🏯', cost:{gold:100}, provide:{happy:6,pop:5,culture:3}, size:1,
+      history:'성곽은 도시 전체를 둘러싼 큰 성벽이에요. 고려의 수도 개성에는 나성이라는 큰 성곽이 있었고, 몽골 침입 때는 강화도에 성을 쌓아 39년이나 버텼어요!'},
+],
+'조선': [
+    { id:'hanok', name:'한옥', icon:'🏡', cost:{gold:70,food:15}, provide:{pop:12,happy:5}, size:1,
+      history:'한옥은 나무와 흙, 돌, 종이로 지은 전통 집이에요. 여름에는 대청마루에서 시원하게, 겨울에는 온돌방에서 따뜻하게 지낼 수 있어요. 자연 재료로 지어서 건강에도 좋았답니다!'},
+    { id:'palace', name:'경복궁', icon:'🏯', cost:{gold:250}, provide:{culture:25,happy:15,pop:5}, size:2,
+      history:'경복궁은 조선의 가장 큰 궁궐이에요. 태조 이성계가 조선을 세우고 처음 지었어요. "큰 복을 누리는 궁궐"이라는 뜻이에요. 근정전에서 왕이 신하들과 나라 일을 의논했어요. 서울에 가면 지금도 볼 수 있어요!'},
+    { id:'seowon', name:'서원', icon:'🎓', cost:{gold:100}, provide:{culture:12,happy:5,pop:3}, size:1,
+      history:'서원은 공부하는 학교예요. 훌륭한 선비를 기리며 학생들이 모여 유교 경전을 배웠어요. 퇴계 이황, 율곡 이이 같은 유명한 학자들이 서원에서 제자들을 가르쳤어요. 2019년에 유네스코 세계유산이 되었답니다!'},
+    { id:'sijeon', name:'시전', icon:'🏪', cost:{gold:80,food:15}, provide:{gold:15,happy:6,food:5}, size:1,
+      history:'시전은 조선시대 서울의 큰 시장이에요. 종로 거리에 줄지어 있었고, 비단, 종이, 생선, 약재 등 종류별로 가게가 나뉘어 있었어요. 육의전이라는 6개의 큰 가게가 특히 유명했답니다!'},
+    { id:'hwaseong', name:'수원화성', icon:'🏰', cost:{gold:200}, provide:{culture:20,happy:10,pop:5}, size:2,
+      history:'수원화성은 정조 임금이 아버지 사도세자를 위해 만든 성이에요. 정약용이 거중기라는 기계를 발명해서 무거운 돌을 쉽게 들어올렸어요. 과학 기술이 담긴 멋진 성으로, 유네스코 세계유산이에요!'},
+    { id:'turtle', name:'거북선 조선소', icon:'🐢', cost:{gold:180}, provide:{culture:15,gold:8}, size:1,
+      history:'거북선은 이순신 장군이 만든 세계 최초의 철갑선이에요. 지붕에 쇠못을 박아서 적이 올라타지 못하게 했고, 앞에서 대포를 쏠 수 있었어요. 임진왜란 때 일본 배를 많이 물리쳤답니다!'},
+    { id:'printing', name:'인쇄소', icon:'📜', cost:{gold:120}, provide:{culture:15,happy:5}, size:1,
+      history:'조선은 인쇄 기술이 매우 뛰어났어요. 금속활자로 책을 찍었는데, 이건 세계에서 가장 먼저 만든 거예요! 세종대왕은 한글(훈민정음)을 만들어서 백성들도 글을 읽을 수 있게 해주었어요.'},
+    { id:'hospital_j', name:'의원', icon:'🏥', cost:{gold:90,food:10}, provide:{pop:5,happy:8}, size:1,
+      history:'의원은 아픈 사람을 치료하는 곳이에요. 허준 선생님이 쓴 "동의보감"은 우리나라 약초와 치료법을 모은 아주 유명한 의학책이에요. 유네스코 세계기록유산이 되었답니다!'},
+],
+'근대': [
+    { id:'brick', name:'벽돌건물', icon:'🏢', cost:{gold:80,food:15}, provide:{pop:15,happy:4}, size:1,
+      history:'개항(나라의 문을 연 것) 이후 서양식 벽돌 건물이 들어왔어요. 빨간 벽돌로 지은 건물은 새로운 시대의 상징이었어요. 덕수궁 석조전이나 명동성당이 이때 지어진 대표적인 서양식 건물이에요!'},
+    { id:'station', name:'기차역', icon:'🚂', cost:{gold:150}, provide:{gold:12,pop:8,happy:5}, size:1,
+      history:'1899년, 우리나라 최초의 기차가 서울 노량진에서 인천까지 달렸어요! 사람들은 "불을 뿜는 쇠말"이라며 깜짝 놀랐답니다. 기차 덕분에 먼 곳까지 빠르게 갈 수 있게 되었어요.'},
+    { id:'telegraph', name:'전신국', icon:'📡', cost:{gold:100}, provide:{culture:8,gold:6,happy:3}, size:1,
+      history:'전신국은 전기 신호로 멀리 있는 사람에게 소식을 보내는 곳이에요. 1885년에 처음 생겼어요. 전화기가 없던 시절, 전신기로 "뚝뚝뚝" 소리를 보내서 소식을 전했어요. 지금의 문자메시지 같은 거예요!'},
+    { id:'school', name:'학교', icon:'🏫', cost:{gold:90}, provide:{culture:12,happy:8,pop:5}, size:1,
+      history:'1883년 원산학사가 우리나라 최초의 근대 학교예요. 이전에는 서당이나 서원에서 공부했는데, 이제 수학, 과학, 외국어도 배우게 되었어요. 배재학당, 이화학당도 이때 세워졌답니다!'},
+    { id:'hospital_m', name:'병원', icon:'🏥', cost:{gold:110,food:10}, provide:{pop:8,happy:10}, size:1,
+      history:'1885년 광혜원이 우리나라 최초의 서양식 병원이에요. 미국 의사 알렌이 세웠고, 나중에 세브란스 병원이 되었어요. 서양 의학 덕분에 수술도 하고, 전염병도 더 잘 치료할 수 있게 되었어요!'},
+    { id:'bank', name:'은행', icon:'🏦', cost:{gold:130}, provide:{gold:20,happy:4}, size:1,
+      history:'1878년 부산에 일본 제일은행 지점이 처음 생기고, 1899년에는 우리나라 사람이 만든 대한천일은행(지금의 우리은행)이 생겼어요. 은행이 생기면서 돈을 맡기고, 빌리는 것이 편해졌어요!'},
+    { id:'factory', name:'공장', icon:'🏭', cost:{gold:120,food:20}, provide:{gold:15,pop:5,food:-5}, size:1,
+      history:'공장은 기계로 물건을 많이 만드는 곳이에요. 방직공장에서 천을 짜고, 정미소에서 쌀을 깎았어요. 기계가 사람 대신 일하면서 물건을 빨리, 많이 만들 수 있게 되었지만, 공장 노동자들은 힘든 일도 많았어요.'},
+    { id:'church', name:'교회', icon:'⛪', cost:{gold:85}, provide:{culture:8,happy:10}, size:1,
+      history:'1884년부터 서양 선교사들이 와서 교회를 세웠어요. 교회에서는 예배만 한 게 아니라 학교와 병원도 만들었어요. 명동성당(1898년)은 우리나라에서 가장 오래된 벽돌 성당이에요!'},
+],
+};
+
+const ERA_ADVANCE = {
+'고조선': { buildings: 6, culture: 20, pop: 30,
+    title:'삼국시대로!', sub:'고구려, 백제, 신라가 세워졌어요!',
+    desc:'고조선이 발전하여 여러 나라가 생겨났어요. 고구려는 북쪽에서 강한 나라가 되었고, 백제는 서쪽에서, 신라는 동쪽에서 나라를 세웠어요. 이제 기와집과 성벽을 지을 수 있어요!'},
+'삼국시대': { buildings: 7, culture: 50, pop: 50,
+    title:'고려 시대로!', sub:'왕건이 고려를 세웠어요!',
+    desc:'신라가 삼국을 통일한 뒤, 왕건이 고려를 세웠어요. 고려는 불교가 크게 발전했고, 세계에서 가장 아름다운 청자를 만들었어요. 팔만대장경도 이때 만들어졌답니다!'},
+'고려': { buildings: 7, culture: 80, pop: 80,
+    title:'조선 시대로!', sub:'이성계가 조선을 세웠어요!',
+    desc:'고려가 약해지자 이성계 장군이 새 나라 조선을 세웠어요. 세종대왕이 한글을 만들고, 이순신 장군이 나라를 지켰어요. 유교를 중요하게 여겼고, 서원에서 공부했답니다!'},
+'조선': { buildings: 7, culture: 120, pop: 100,
+    title:'근대로!', sub:'나라의 문이 열렸어요!',
+    desc:'조선 후기, 서양의 기술과 문화가 들어왔어요. 기차가 달리고, 전기가 켜지고, 학교와 병원이 생겼어요. 새로운 세상이 시작되었답니다!'},
+};
+
+// ===================== GAME STATE =====================
+const GRID = 14;
+let grid = Array.from({length:GRID}, ()=> Array(GRID).fill(null));
+let currentEra = 0;
+let selectedBuilding = null;
+let deleteMode = false;
+let resources = { pop:50, food:100, gold:200, happy:50, culture:0 };
+let rates = { pop:0, food:0, gold:0, happy:0, culture:0 };
+let buildCount = 0;
+let speed = 1;
+let tickTimer = 0;
+let yearCounter = 0;
+
+// Camera
+let camX = 0, camY = 0, zoom = 1;
+let dragging = false, dragStartX=0, dragStartY=0, camStartX=0, camStartY=0;
+let dragMoved = false;
+
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+const TILE_W = 64;
+const TILE_H = 32;
+
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    render();
+}
+window.addEventListener('resize', resize);
+
+// ===================== ISO MATH =====================
+function isoToScreen(gx, gy) {
+    const sx = (gx - gy) * (TILE_W/2) * zoom + camX + canvas.width/2;
+    const sy = (gx + gy) * (TILE_H/2) * zoom + camY + canvas.height/3;
+    return [sx, sy];
+}
+
+function screenToGrid(sx, sy) {
+    const rx = (sx - camX - canvas.width/2) / zoom;
+    const ry = (sy - camY - canvas.height/3) / zoom;
+    const gx = (rx / (TILE_W/2) + ry / (TILE_H/2)) / 2;
+    const gy = (ry / (TILE_H/2) - rx / (TILE_W/2)) / 2;
+    return [Math.floor(gx), Math.floor(gy)];
+}
+
+// ===================== RENDER =====================
+function render() {
+    const w = canvas.width, h = canvas.height;
+    // Background gradient
+    const bgCol = ERA_BG[currentEra] || '#2a2a2a';
+    ctx.fillStyle = bgCol;
+    ctx.fillRect(0,0,w,h);
+
+    // Draw grid
+    for(let gy=0; gy<GRID; gy++) {
+        for(let gx=0; gx<GRID; gx++) {
+            const [sx, sy] = isoToScreen(gx, gy);
+            drawTile(sx, sy, gx, gy);
+            if(grid[gy][gx]) {
+                drawBuilding(sx, sy, grid[gy][gx]);
+            }
+        }
+    }
+
+    // Ghost building
+    if(selectedBuilding && !deleteMode && hoverGX >= 0 && hoverGY >= 0 && hoverGX < GRID && hoverGY < GRID) {
+        const [sx, sy] = isoToScreen(hoverGX, hoverGY);
+        ctx.globalAlpha = 0.5;
+        const bdata = selectedBuilding;
+        drawBuildingIcon(sx, sy, bdata.icon, bdata.size || 1);
+        ctx.globalAlpha = 1;
+    }
+}
+
+function drawTile(sx, sy, gx, gy) {
+    const tw = TILE_W * zoom;
+    const th = TILE_H * zoom;
+    ctx.beginPath();
+    ctx.moveTo(sx, sy - th/2);
+    ctx.lineTo(sx + tw/2, sy);
+    ctx.lineTo(sx, sy + th/2);
+    ctx.lineTo(sx - tw/2, sy);
+    ctx.closePath();
+
+    const isHover = (gx === hoverGX && gy === hoverGY);
+    if(deleteMode && isHover && grid[gy] && grid[gy][gx]) {
+        ctx.fillStyle = 'rgba(255,60,60,0.3)';
+    } else if(isHover && selectedBuilding) {
+        const canPlace = !grid[gy][gx];
+        ctx.fillStyle = canPlace ? 'rgba(100,255,100,0.2)' : 'rgba(255,60,60,0.2)';
+    } else {
+        const shade = ((gx + gy) % 2 === 0) ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.03)';
+        ctx.fillStyle = shade;
+    }
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+}
+
+function drawBuilding(sx, sy, bdata) {
+    drawBuildingIcon(sx, sy, bdata.icon, bdata.size || 1);
+}
+
+function drawBuildingIcon(sx, sy, icon, size) {
+    const fontSize = Math.round((size > 1 ? 32 : 24) * zoom);
+    ctx.font = `${fontSize}px sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(icon, sx, sy - 6 * zoom);
+}
+
+let hoverGX = -1, hoverGY = -1;
+
+// ===================== INPUT =====================
+function getEventPos(e) {
+    if(e.touches) return [e.touches[0].clientX, e.touches[0].clientY];
+    return [e.clientX, e.clientY];
+}
+
+canvas.addEventListener('mousedown', e => startDrag(e.clientX, e.clientY));
+canvas.addEventListener('mousemove', e => { moveDrag(e.clientX, e.clientY); updateHover(e.clientX, e.clientY); });
+canvas.addEventListener('mouseup', e => endDrag(e.clientX, e.clientY));
+canvas.addEventListener('touchstart', e => { e.preventDefault(); const t=e.touches[0]; startDrag(t.clientX, t.clientY); }, {passive:false});
+canvas.addEventListener('touchmove', e => { e.preventDefault(); const t=e.touches[0]; moveDrag(t.clientX, t.clientY); updateHover(t.clientX, t.clientY); }, {passive:false});
+canvas.addEventListener('touchend', e => { e.preventDefault(); const t=e.changedTouches[0]; endDrag(t.clientX, t.clientY); }, {passive:false});
+canvas.addEventListener('wheel', e => { e.preventDefault(); if(e.deltaY < 0) zoomIn(); else zoomOut(); }, {passive:false});
+
+function startDrag(x, y) {
+    dragging = true; dragStartX = x; dragStartY = y;
+    camStartX = camX; camStartY = camY; dragMoved = false;
+}
+function moveDrag(x, y) {
+    if(!dragging) return;
+    const dx = x - dragStartX, dy = y - dragStartY;
+    if(Math.abs(dx) > 5 || Math.abs(dy) > 5) dragMoved = true;
+    camX = camStartX + dx;
+    camY = camStartY + dy;
+    render();
+}
+function endDrag(x, y) {
+    dragging = false;
+    if(!dragMoved) handleClick(x, y);
+}
+function updateHover(x, y) {
+    const [gx, gy] = screenToGrid(x, y);
+    if(gx !== hoverGX || gy !== hoverGY) {
+        hoverGX = gx; hoverGY = gy;
+        render();
+    }
+}
+
+function handleClick(x, y) {
+    const [gx, gy] = screenToGrid(x, y);
+    if(gx < 0 || gy < 0 || gx >= GRID || gy >= GRID) return;
+
+    if(deleteMode) {
+        if(grid[gy][gx]) {
+            grid[gy][gx] = null;
+            buildCount--;
+            toast('건물을 철거했어요');
+            recalcRates();
+            render();
+        }
+        return;
+    }
+
+    if(grid[gy][gx]) {
+        showPopup(grid[gy][gx]);
+        return;
+    }
+
+    if(selectedBuilding) {
+        placeBuilding(gx, gy);
+    }
+}
+
+function placeBuilding(gx, gy) {
+    const b = selectedBuilding;
+    // Check cost
+    if(b.cost.gold && resources.gold < b.cost.gold) { toast('금이 부족해요!'); return; }
+    if(b.cost.food && resources.food < b.cost.food) { toast('식량이 부족해요!'); return; }
+
+    if(grid[gy][gx]) { toast('이미 건물이 있어요!'); return; }
+
+    // For size 2 buildings, check adjacent
+    if(b.size === 2) {
+        if(gx+1 >= GRID || gy+1 >= GRID) { toast('공간이 부족해요!'); return; }
+        if(grid[gy][gx+1] || grid[gy+1][gx] || grid[gy+1][gx+1]) { toast('공간이 부족해요!'); return; }
+    }
+
+    // Deduct cost
+    if(b.cost.gold) resources.gold -= b.cost.gold;
+    if(b.cost.food) resources.food -= b.cost.food;
+
+    const placed = {...b, era: ERAS[currentEra]};
+    grid[gy][gx] = placed;
+    if(b.size === 2) {
+        grid[gy][gx+1] = {...placed, isExtra:true};
+        grid[gy+1][gx] = {...placed, isExtra:true};
+        grid[gy+1][gx+1] = {...placed, isExtra:true};
+    }
+    buildCount++;
+    recalcRates();
+    updateHUD();
+    checkEraAdvance();
+    render();
+    toast(`${b.name} 건설 완료!`);
+}
+
+// ===================== GAME LOGIC =====================
+function recalcRates() {
+    rates = { pop:0, food:0, gold:0, happy:0, culture:0 };
+    for(let gy=0; gy<GRID; gy++) {
+        for(let gx=0; gx<GRID; gx++) {
+            const b = grid[gy][gx];
+            if(!b || b.isExtra) continue;
+            const p = b.provide || {};
+            if(p.pop) rates.pop += p.pop;
+            if(p.food) rates.food += p.food;
+            if(p.gold) rates.gold += p.gold;
+            if(p.happy) rates.happy += p.happy;
+            if(p.culture) rates.culture += p.culture;
+        }
+    }
+    // Population consumes food
+    rates.food -= Math.floor(resources.pop / 15);
+    // Maintenance cost
+    rates.gold -= Math.floor(buildCount * 1.5);
+}
+
+function gameTick() {
+    if(speed === 0) return;
+
+    tickTimer++;
+    const interval = speed === 1 ? 60 : speed === 2 ? 30 : 15;
+    if(tickTimer % interval !== 0) return;
+
+    yearCounter++;
+
+    recalcRates();
+
+    resources.pop = Math.max(0, resources.pop + Math.floor(rates.pop / 5));
+    resources.food = Math.max(0, resources.food + rates.food);
+    resources.gold = Math.max(0, resources.gold + rates.gold);
+    resources.happy = Math.max(0, Math.min(100, resources.happy + Math.floor(rates.happy / 10)));
+    resources.culture += Math.max(0, Math.floor(rates.culture / 3));
+
+    // Unhappy if no food
+    if(resources.food <= 0) {
+        resources.happy = Math.max(0, resources.happy - 2);
+        resources.pop = Math.max(10, resources.pop - 1);
+    }
+
+    // Happy bonus
+    if(resources.happy > 70) resources.gold += 1;
+
+    updateHUD();
+    checkEraAdvance();
+}
+
+function updateHUD() {
+    document.getElementById('r-pop').textContent = resources.pop;
+    document.getElementById('r-food').textContent = resources.food;
+    document.getElementById('r-gold').textContent = resources.gold;
+    document.getElementById('r-happy').textContent = resources.happy;
+    document.getElementById('r-culture').textContent = resources.culture;
+
+    const rateStr = (v, div) => {
+        const r = div ? Math.floor(v/div) : v;
+        if(r === 0) return '';
+        return (r > 0 ? '+' : '') + r;
+    };
+
+    const setRate = (id, val, div) => {
+        const el = document.getElementById(id);
+        const r = div ? Math.floor(val/div) : val;
+        el.textContent = r !== 0 ? ((r>0?'+':'')+r) : '';
+        el.className = 'res-rate' + (r < 0 ? ' neg' : '');
+    };
+    setRate('rr-pop', rates.pop, 5);
+    setRate('rr-food', rates.food);
+    setRate('rr-gold', rates.gold);
+
+    // Year display
+    const eraYear = ERA_YEARS[currentEra];
+    document.getElementById('year-display').textContent = eraYear;
+
+    // Era label
+    document.getElementById('era-label').textContent = ERAS[currentEra];
+    document.getElementById('era-label').style.background =
+        `linear-gradient(135deg, ${ERA_COLORS[currentEra]}, ${ERA_COLORS[currentEra]}cc)`;
+}
+
+function checkEraAdvance() {
+    if(currentEra >= 4) return;
+    const req = ERA_ADVANCE[ERAS[currentEra]];
+    if(!req) return;
+
+    const progress = Math.min(100, (
+        (Math.min(buildCount, req.buildings) / req.buildings) * 33 +
+        (Math.min(resources.culture, req.culture) / req.culture) * 34 +
+        (Math.min(resources.pop, req.pop) / req.pop) * 33
+    ));
+
+    document.getElementById('era-progress-bar').style.width = progress + '%';
+
+    const btn = document.getElementById('next-era-btn');
+    if(buildCount >= req.buildings && resources.culture >= req.culture && resources.pop >= req.pop) {
+        btn.style.display = 'inline-block';
+    } else {
+        btn.style.display = 'none';
+    }
+}
+
+function advanceEra() {
+    if(currentEra >= 4) return;
+    const req = ERA_ADVANCE[ERAS[currentEra]];
+
+    currentEra++;
+    selectedBuilding = null;
+    buildBuildPanel();
+    updateHUD();
+
+    // Show event
+    document.getElementById('ev-title').textContent = req.title;
+    document.getElementById('ev-sub').textContent = req.sub;
+    document.getElementById('ev-desc').textContent = req.desc;
+    document.getElementById('event-overlay').classList.add('show');
+    document.getElementById('next-era-btn').style.display = 'none';
+
+    // Bonus resources
+    resources.gold += 100;
+    resources.food += 50;
+    toast('새로운 시대가 시작되었어요!');
+    render();
+}
+
+function closeEvent() {
+    document.getElementById('event-overlay').classList.remove('show');
+}
+
+// ===================== POPUP =====================
+function showPopup(bdata) {
+    const popup = document.getElementById('popup');
+    popup.querySelector('.p-icon').textContent = bdata.icon;
+    popup.querySelector('.p-title').textContent = bdata.name;
+    popup.querySelector('.p-era').textContent = `📅 ${bdata.era}`;
+    popup.querySelector('.p-history').textContent = bdata.history;
+
+    const p = bdata.provide || {};
+    let stats = [];
+    if(p.pop) stats.push(`👥 인구 ${p.pop>0?'+':''}${p.pop}`);
+    if(p.food) stats.push(`🌾 식량 ${p.food>0?'+':''}${p.food}`);
+    if(p.gold) stats.push(`💰 금 ${p.gold>0?'+':''}${p.gold}`);
+    if(p.happy) stats.push(`😊 행복 ${p.happy>0?'+':''}${p.happy}`);
+    if(p.culture) stats.push(`🏛️ 문화 ${p.culture>0?'+':''}${p.culture}`);
+    popup.querySelector('.p-stats').textContent = stats.join('  ');
+
+    document.getElementById('popup-overlay').classList.add('show');
+}
+
+function closePopup(e) {
+    if(e && e.target !== document.getElementById('popup-overlay')) return;
+    document.getElementById('popup-overlay').classList.remove('show');
+}
+
+// ===================== BUILD PANEL =====================
+function buildBuildPanel() {
+    const container = document.getElementById('buildTabs');
+    container.innerHTML = '';
+    const eraName = ERAS[currentEra];
+    const buildings = BUILDINGS[eraName];
+
+    buildings.forEach((b, i) => {
+        const tab = document.createElement('div');
+        tab.className = 'build-tab';
+        tab.innerHTML = `<span class="b-icon">${b.icon}</span><span class="b-name">${b.name}</span><span class="b-cost">💰${b.cost.gold||0}${b.cost.food?' 🌾'+b.cost.food:''}</span>`;
+        tab.onclick = (e) => {
+            e.stopPropagation();
+            selectBuilding(b, tab);
+        };
+        container.appendChild(tab);
+    });
+}
+
+function selectBuilding(b, tabEl) {
+    deleteMode = false;
+    document.getElementById('delete-btn').classList.remove('active');
+
+    if(selectedBuilding && selectedBuilding.id === b.id) {
+        selectedBuilding = null;
+        document.querySelectorAll('.build-tab').forEach(t => t.classList.remove('selected'));
+        document.getElementById('buildInfo').style.display = 'none';
+        return;
+    }
+
+    selectedBuilding = b;
+    document.querySelectorAll('.build-tab').forEach(t => t.classList.remove('selected'));
+    tabEl.classList.add('selected');
+
+    const info = document.getElementById('buildInfo');
+    info.style.display = 'block';
+    info.querySelector('.bi-title').textContent = `${b.icon} ${b.name}`;
+
+    const p = b.provide || {};
+    let desc = [];
+    if(p.pop) desc.push(`인구+${p.pop}`);
+    if(p.food) desc.push(`식량${p.food>0?'+':''}${p.food}`);
+    if(p.gold) desc.push(`금${p.gold>0?'+':''}${p.gold}`);
+    if(p.happy) desc.push(`행복+${p.happy}`);
+    if(p.culture) desc.push(`문화+${p.culture}`);
+    info.querySelector('.bi-desc').textContent = desc.join(' | ');
+}
+
+function toggleDelete() {
+    deleteMode = !deleteMode;
+    selectedBuilding = null;
+    document.querySelectorAll('.build-tab').forEach(t => t.classList.remove('selected'));
+    document.getElementById('delete-btn').classList.toggle('active', deleteMode);
+    document.getElementById('buildInfo').style.display = 'none';
+    render();
+}
+
+function zoomIn() { zoom = Math.min(2.5, zoom * 1.15); render(); }
+function zoomOut() { zoom = Math.max(0.4, zoom / 1.15); render(); }
+
+function setSpeed(s) {
+    speed = s;
+    document.querySelectorAll('#speed-ctrl button').forEach((b,i) => {
+        b.classList.toggle('active', i === s);
+    });
+}
+
+function toast(msg) {
+    const t = document.createElement('div');
+    t.className = 'toast';
+    t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 2200);
+}
+
+// ===================== MAIN LOOP =====================
+function gameLoop() {
+    gameTick();
+    requestAnimationFrame(gameLoop);
+}
+
+function init() {
+    resize();
+    buildBuildPanel();
+    updateHUD();
+
+    // Center camera
+    const [cx, cy] = isoToScreen(GRID/2, GRID/2);
+    camX = 0;
+    camY = -50;
+
+    render();
+    gameLoop();
+
+    toast('한국사 도시건설에 오신 것을 환영해요!');
+}
+
+init();
+</script>
+</body>
+</html>
