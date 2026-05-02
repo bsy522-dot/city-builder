@@ -307,10 +307,160 @@ body {
 @media (max-width: 600px) {
     #minimap { width: 80px; height: 80px; right: 50px; }
     #ach-panel-btn { right: 138px; }
+    #stats-btn { right: 178px; }
     #hud { font-size: 11px; padding: 6px 8px; }
     .res-icon { font-size: 14px; }
     #disaster-alert { max-width: 260px; padding: 10px 14px; }
 }
+
+/* Statistics Panel */
+#stats-btn {
+    position: fixed; top: 50px; right: 228px; z-index: 10;
+    background: rgba(0,0,0,0.7); border: 1px solid #555; color: #60e0ff;
+    width: 36px; height: 36px; border-radius: 8px; font-size: 18px;
+    cursor: pointer;
+}
+#stats-panel {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.85); z-index: 150;
+    justify-content: center; align-items: center; padding: 20px;
+}
+#stats-panel.show { display: flex; }
+#stats-panel-box {
+    background: linear-gradient(145deg, #1a2a3e, #0e1e2e);
+    border: 2px solid #60e0ff; border-radius: 16px;
+    padding: 20px; max-width: 520px; width: 100%;
+    max-height: 80vh; overflow-y: auto;
+}
+#stats-panel h2 { color: #60e0ff; text-align: center; margin-bottom: 10px; }
+#stats-chart { width: 100%; height: 180px; background: rgba(0,0,0,0.4); border-radius: 8px; }
+.stat-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 13px; }
+.stat-label { color: #aaa; }
+.stat-value { color: #ffd700; font-weight: bold; }
+
+/* Chronicle Panel */
+#chronicle-btn {
+    position: fixed; top: 90px; right: 10px; z-index: 10;
+    background: rgba(0,0,0,0.7); border: 1px solid #555; color: #ffaa60;
+    width: 36px; height: 36px; border-radius: 8px; font-size: 18px;
+    cursor: pointer;
+}
+#chronicle-panel {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.85); z-index: 150;
+    justify-content: center; align-items: center; padding: 20px;
+}
+#chronicle-panel.show { display: flex; }
+#chronicle-box {
+    background: linear-gradient(145deg, #2a2018, #1a1008);
+    border: 2px solid #c4923a; border-radius: 16px;
+    padding: 20px; max-width: 460px; width: 100%;
+    max-height: 80vh; overflow-y: auto;
+}
+#chronicle-box h2 { color: #c4923a; text-align: center; margin-bottom: 10px; }
+.chron-entry {
+    display: flex; gap: 8px; padding: 6px 0; border-bottom: 1px solid rgba(196,146,58,0.15);
+    font-size: 12px; align-items: flex-start;
+}
+.chron-icon { font-size: 18px; flex-shrink: 0; }
+.chron-text { color: #ddd; line-height: 1.4; }
+.chron-year { color: #c4923a; font-size: 10px; margin-top: 2px; }
+
+/* Floating Numbers */
+.float-num {
+    position: fixed; z-index: 55; font-weight: bold; font-size: 14px;
+    pointer-events: none; animation: floatUp 1.5s forwards;
+}
+.float-num.pos { color: #4caf50; }
+.float-num.neg { color: #ff4040; }
+@keyframes floatUp {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-40px); }
+}
+
+/* Advisor Tooltip */
+#advisor {
+    display: none; position: fixed; bottom: 120px; left: 50%;
+    transform: translateX(-50%); z-index: 40; max-width: 320px;
+    background: linear-gradient(135deg, rgba(40,60,100,0.95), rgba(20,30,60,0.95));
+    border: 1px solid #4080c0; border-radius: 12px;
+    padding: 10px 16px; font-size: 12px; color: #c0e0ff;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    animation: advisorSlide 0.4s ease-out;
+}
+#advisor.show { display: block; }
+#advisor .adv-icon { float: left; font-size: 24px; margin-right: 8px; }
+#advisor .adv-text { line-height: 1.5; }
+#advisor .adv-close {
+    position: absolute; top: 4px; right: 8px; background: none; border: none;
+    color: #80a0c0; font-size: 14px; cursor: pointer;
+}
+@keyframes advisorSlide {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* Victory Screen */
+#victory-overlay {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.9); z-index: 500;
+    justify-content: center; align-items: center;
+}
+#victory-overlay.show { display: flex; }
+#victory-box {
+    background: linear-gradient(145deg, #2a1a0a, #1a0a00);
+    border: 3px solid #ffd700; border-radius: 20px;
+    padding: 30px; max-width: 480px; width: 90%; text-align: center;
+    box-shadow: 0 0 60px rgba(255,215,0,0.4);
+}
+#victory-box h1 { color: #ffd700; font-size: 28px; margin-bottom: 8px; }
+#victory-box .v-sub { color: #ffaa40; font-size: 16px; margin-bottom: 16px; }
+#victory-box .v-stats { text-align: left; font-size: 13px; color: #ddd; line-height: 1.8; }
+#victory-box .v-stars { font-size: 36px; margin: 12px 0; }
+#victory-box button {
+    background: linear-gradient(135deg, #ffd700, #c4923a); border: none;
+    color: #1a0a00; padding: 12px 36px; border-radius: 24px;
+    font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 14px;
+}
+
+/* Auto-save indicator */
+#autosave-ind {
+    position: fixed; bottom: 125px; left: 10px; z-index: 15;
+    font-size: 10px; color: rgba(255,255,255,0.4); display: none;
+}
+#autosave-ind.show { display: block; animation: autosaveFade 2s forwards; }
+@keyframes autosaveFade {
+    0% { opacity: 0.8; } 100% { opacity: 0; }
+}
+
+/* Year display enhanced */
+#year-display { font-variant-numeric: tabular-nums; }
+
+/* Enhanced mobile */
+@media (max-width: 600px) {
+    #minimap { width: 80px; height: 80px; right: 50px; }
+    #ach-panel-btn { right: 138px; }
+    #stats-btn { right: 178px; }
+    #hud { font-size: 11px; padding: 6px 8px; }
+    .res-icon { font-size: 14px; }
+    #disaster-alert { max-width: 260px; padding: 10px 14px; }
+    #advisor { max-width: 260px; bottom: 130px; font-size: 11px; }
+    #chronicle-btn { top: 90px; right: 6px; }
+    .build-tab { min-width: 60px; padding: 5px 8px; }
+    .build-tab .b-icon { font-size: 18px; }
+    .build-tab .b-name { font-size: 9px; }
+    #save-ctrl { bottom: 120px; }
+}
+@media (max-width: 400px) {
+    #hud { font-size: 10px; padding: 4px 6px; gap: 4px 8px; }
+    .res-icon { font-size: 12px; }
+    #era-label { font-size: 11px; padding: 3px 8px; }
+    #speed-ctrl button { padding: 3px 6px; font-size: 10px; }
+    #controls button, #save-ctrl button, #chronicle-btn, #stats-btn, #ach-panel-btn {
+        width: 30px; height: 30px; font-size: 14px;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -421,6 +571,53 @@ body {
         <div class="ev-sub" id="ev-sub"></div>
         <div class="ev-desc" id="ev-desc"></div>
         <button onclick="closeEvent()">시작하기!</button>
+    </div>
+</div>
+
+
+<!-- Stats button -->
+<button id="stats-btn" onclick="showStats()" title="통계">📊</button>
+
+<!-- Chronicle button -->
+<button id="chronicle-btn" onclick="showChronicle()" title="역사 기록">📜</button>
+
+<!-- Advisor -->
+<div id="advisor">
+    <button class="adv-close" onclick="closeAdvisor()">✕</button>
+    <span class="adv-icon">🧙</span>
+    <span class="adv-text" id="adv-text"></span>
+</div>
+
+<!-- Auto-save indicator -->
+<div id="autosave-ind">💾 자동 저장됨</div>
+
+<!-- Stats Panel -->
+<div id="stats-panel" onclick="closeStats(event)">
+    <div id="stats-panel-box">
+        <h2>📊 도시 통계</h2>
+        <canvas id="stats-chart" width="480" height="180"></canvas>
+        <div id="stats-details"></div>
+        <button class="t-btn" style="display:block;margin:14px auto 0;background:#60e0ff;color:#0a1a2e;border:none;padding:10px 28px;border-radius:20px;font-size:14px;font-weight:bold;cursor:pointer;" onclick="closeStats()">닫기</button>
+    </div>
+</div>
+
+<!-- Chronicle Panel -->
+<div id="chronicle-panel" onclick="closeChronicle(event)">
+    <div id="chronicle-box">
+        <h2>📜 역사 기록</h2>
+        <div id="chronicle-list"></div>
+        <button class="t-btn" style="display:block;margin:14px auto 0;background:#c4923a;color:#fff;border:none;padding:10px 28px;border-radius:20px;font-size:14px;font-weight:bold;cursor:pointer;" onclick="closeChronicle()">닫기</button>
+    </div>
+</div>
+
+<!-- Victory -->
+<div id="victory-overlay">
+    <div id="victory-box">
+        <h1>🎉 축하합니다!</h1>
+        <div class="v-sub">한국 5천년 역사를 완성했어요!</div>
+        <div class="v-stars" id="v-stars"></div>
+        <div class="v-stats" id="v-stats"></div>
+        <button onclick="closeVictory()">계속 플레이</button>
     </div>
 </div>
 
@@ -645,6 +842,35 @@ const BLESSINGS = [
       effect: (r) => { r.happy = Math.min(100, r.happy + 20); r.culture += 10; } },
 ];
 
+// ===================== ADVISOR TIPS =====================
+const ADVISOR_TIPS = [
+    '💡 고인돌은 한국에 세계 전체의 40%가 있어요. 문화 건물을 많이 지어보세요!',
+    '💡 식량이 0이 되면 인구가 줄어요. 농업 건물을 충분히 지으세요.',
+    '💡 행복도가 70 이상이면 금 보너스가 생겨요!',
+    '💡 건물을 클릭하면 한국사 이야기를 읽을 수 있어요.',
+    '💡 Ctrl+S로 빠르게 저장, Ctrl+L로 불러오기가 됩니다.',
+    '💡 재해가 오면 자원이 줄어요. 자원을 넉넉히 비축하세요!',
+    '💡 시대를 발전시키려면 건물 수, 문화, 인구 세 가지가 필요해요.',
+    '💡 세종대왕은 한글뿐 아니라 과학기구도 많이 만들었어요.',
+    '💡 고려의 금속활자는 구텐베르크보다 200년 먼저 만들어졌어요!',
+    '💡 거북선은 세계 최초의 철갑선으로 알려져 있어요.',
+    '💡 첨성대는 돌 362개로 쌓아 1년의 날수를 표현했어요.',
+    '💡 미니맵을 클릭하면 해당 위치로 카메라가 이동해요.',
+    '💡 키보드 +/-로 줌, ESC로 선택 해제할 수 있어요.',
+    '💡 밤에는 건물 창문에서 불빛이 나와요. 낮/밤 사이클을 지켜보세요!',
+    '💡 재해를 극복하면 업적을 얻을 수 있어요.',
+    '💡 속도를 3배로 올리면 자원이 빠르게 모여요.',
+    '💡 한국의 온돌은 세계에서 가장 과학적인 난방 시스템 중 하나예요.',
+    '💡 독립문은 프랑스 개선문을 본떠 만들었어요.',
+    '💡 경복궁 근정전은 조선 왕이 정사를 보던 곳이에요.',
+    '💡 팔만대장경은 81,258장의 나무판에 불경을 새긴 것이에요.',
+];
+
+// ===================== YEAR RANGES =====================
+const ERA_YEAR_START = [-2333, -57, 918, 1392, 1876];
+const ERA_YEAR_END = [-57, 918, 1392, 1876, 1945];
+
+
 // ===================== ACHIEVEMENTS =====================
 const ACHIEVEMENTS = [
     { id:'first_build', icon:'🔨', title:'첫 건물', desc:'첫 번째 건물을 지었어요!',
@@ -675,10 +901,22 @@ const ACHIEVEMENTS = [
       check: (s) => s.disastersSurvived >= 1 },
     { id:'master', icon:'👑', title:'역사의 지배자', desc:'모든 시대를 완성했어요!',
       check: (s) => s.currentEra >= 4 && s.buildCount >= 50 },
+    { id:'food_200', icon:'🌾', title:'풍요의 땅', desc:'식량 200개를 확보했어요!',
+      check: (s) => s.resources.food >= 200 },
+    { id:'culture_200', icon:'🎨', title:'문화 강국', desc:'문화 200을 달성했어요!',
+      check: (s) => s.resources.culture >= 200 },
+    { id:'speed_demon', icon:'⚡', title:'시간의 마법사', desc:'3배속을 사용했어요!',
+      check: (s) => s.usedFastSpeed },
+    { id:'survivor_5', icon:'🏅', title:'불굴의 의지', desc:'재해 5회를 극복했어요!',
+      check: (s) => s.disastersSurvived >= 5 },
+    { id:'millionaire', icon:'💎', title:'부의 왕', desc:'금 5000개를 모았어요!',
+      check: (s) => s.resources.gold >= 5000 },
+    { id:'full_grid', icon:'🗺️', title:'개발의 왕', desc:'60개 이상 건물을 지었어요!',
+      check: (s) => s.buildCount >= 60 },
 ];
 
 // ===================== GAME STATE =====================
-const GRID = 14;
+const GRID = 18;
 let grid = Array.from({length:GRID}, ()=> Array(GRID).fill(null));
 let currentEra = 0;
 let selectedBuilding = null;
@@ -697,6 +935,17 @@ let audioMuted = false;
 let particles = []; // {x,y,vx,vy,life,color,type}
 let weatherType = 'clear'; // clear, rain, snow
 let weatherParticles = [];
+let usedFastSpeed = false;
+let chronicle = [];
+let statsHistory = { pop:[], food:[], gold:[], culture:[] };
+let starField = [];
+let advisorTimer = 0;
+let advisorShown = false;
+let autoSaveTimer = 0;
+let lastResources = { pop:0, food:0, gold:0 };
+let gameYear = -2333;
+let victoryShown = false;
+let terrainDecor = [];
 
 // Camera
 let camX = 0, camY = 0, zoom = 1;
@@ -760,6 +1009,30 @@ function render() {
     }
     ctx.fillStyle = skyGrad;
     ctx.fillRect(0, 0, w, h*0.4);
+
+    // Star field at night
+    if(nightness > 0.3) {
+        const starAlpha = Math.min(1, (nightness - 0.3) * 2.5);
+        for(const star of starField) {
+            const blink = Math.sin(star.blink + tickTimer * star.speed) * 0.3 + 0.7;
+            ctx.fillStyle = `rgba(255,255,240,${starAlpha * blink})`;
+            ctx.beginPath();
+            ctx.arc(star.x * w, star.y * h, star.size, 0, Math.PI*2);
+            ctx.fill();
+        }
+        // Moon
+        const moonX = w * 0.8;
+        const moonY = h * 0.12;
+        const moonAlpha = starAlpha * 0.9;
+        ctx.fillStyle = `rgba(255,250,220,${moonAlpha})`;
+        ctx.beginPath();
+        ctx.arc(moonX, moonY, 18, 0, Math.PI*2);
+        ctx.fill();
+        ctx.fillStyle = `rgba(10,10,40,${moonAlpha})`;
+        ctx.beginPath();
+        ctx.arc(moonX + 6, moonY - 3, 15, 0, Math.PI*2);
+        ctx.fill();
+    }
 
     // Draw grid with sorting (back to front for iso)
     for(let gy=0; gy<GRID; gy++) {
@@ -851,6 +1124,41 @@ function drawTile(sx, sy, gx, gy) {
     ctx.strokeStyle = 'rgba(0,0,0,0.25)';
     ctx.lineWidth = 1;
     ctx.stroke();
+
+    // Terrain decorations on empty tiles
+    if(!grid[gy] || !grid[gy][gx]) {
+        for(const d of terrainDecor) {
+            if(d.gx === gx && d.gy === gy) {
+                const s = zoom;
+                if(d.type === 'tree') {
+                    ctx.fillStyle = '#2a5a2a';
+                    ctx.beginPath();
+                    ctx.moveTo(sx, sy - 12*s);
+                    ctx.lineTo(sx + 5*s, sy - 2*s);
+                    ctx.lineTo(sx - 5*s, sy - 2*s);
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.fillStyle = '#4a2a1a';
+                    ctx.fillRect(sx - 1*s, sy - 3*s, 2*s, 4*s);
+                } else if(d.type === 'rock') {
+                    ctx.fillStyle = '#707070';
+                    ctx.beginPath();
+                    ctx.ellipse(sx + 2*s, sy, 4*s, 2.5*s, 0, 0, Math.PI*2);
+                    ctx.fill();
+                } else if(d.type === 'grass') {
+                    ctx.strokeStyle = '#3a7a3a';
+                    ctx.lineWidth = 1;
+                    for(let gi=0; gi<3; gi++) {
+                        const gx2 = sx + (gi-1)*3*s;
+                        ctx.beginPath();
+                        ctx.moveTo(gx2, sy);
+                        ctx.lineTo(gx2 + 1*s, sy - 5*s);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+    }
 }
 
 function drawBuilding(sx, sy, bdata, gx, gy) {
@@ -1180,6 +1488,7 @@ function placeBuilding(gx, gy) {
     checkAchievements();
     render();
     drawMinimap();
+    if(buildCount % 5 === 0) addChronicle(b.icon, `${b.name}을(를) 포함하여 ${buildCount}개의 건물을 건설했습니다.`);
     toast(`${b.name} 건설 완료!`);
 }
 
@@ -1255,7 +1564,12 @@ function toggleAudio() {
     const btn = document.getElementById('audio-btn');
     btn.textContent = audioMuted ? '🔇' : '🔊';
     btn.classList.toggle('muted', audioMuted);
-    if(!audioMuted && !audioCtx) initAudio();
+    if(!audioMuted) {
+        if(!audioCtx) initAudio();
+        startBGM();
+    } else {
+        stopBGM();
+    }
 }
 
 // ===================== DISASTERS =====================
@@ -1337,6 +1651,7 @@ function showDisasterAlert(d) {
     el.classList.add('show');
     setTimeout(() => el.classList.remove('show'), 5000);
     disastersSurvived++;
+    addChronicle(d.icon, d.title + ' ' + d.desc);
 }
 
 function showBlessingAlert(b) {
@@ -1348,6 +1663,7 @@ function showBlessingAlert(b) {
     el.querySelector('.d-icon').textContent = b.icon;
     el.querySelector('.d-title').textContent = b.title;
     el.querySelector('.d-desc').textContent = b.desc;
+    addChronicle(b.icon, b.title + ' ' + b.desc);
     el.classList.add('show');
     setTimeout(() => {
         el.classList.remove('show');
@@ -1495,6 +1811,57 @@ function gameTick() {
     // Happy bonus
     if(resources.happy > 70) resources.gold += 1;
 
+    // Year progression
+    const eraStart = ERA_YEAR_START[currentEra];
+    const eraEnd = ERA_YEAR_END[currentEra];
+    const yearsPerTick = Math.max(1, Math.floor((eraEnd - eraStart) / 200));
+    gameYear = Math.min(eraEnd, gameYear + yearsPerTick);
+
+    // Track stats history (every 5 ticks)
+    if(yearCounter % 5 === 0) {
+        statsHistory.pop.push(resources.pop);
+        statsHistory.food.push(resources.food);
+        statsHistory.gold.push(resources.gold);
+        statsHistory.culture.push(resources.culture);
+        if(statsHistory.pop.length > 100) {
+            statsHistory.pop.shift();
+            statsHistory.food.shift();
+            statsHistory.gold.shift();
+            statsHistory.culture.shift();
+        }
+    }
+
+    // Floating resource numbers
+    if(yearCounter % 3 === 0) {
+        const dr = {
+            pop: resources.pop - lastResources.pop,
+            food: resources.food - lastResources.food,
+            gold: resources.gold - lastResources.gold
+        };
+        if(dr.gold !== 0) showFloatingNum(dr.gold > 0 ? `+${dr.gold} 💰` : `${dr.gold} 💰`, dr.gold > 0);
+        lastResources = { pop: resources.pop, food: resources.food, gold: resources.gold };
+    }
+
+    // Advisor timer
+    advisorTimer++;
+    if(advisorTimer > 900 && !advisorShown) {
+        showAdvisor();
+        advisorTimer = 0;
+    }
+
+    // Auto-save every 600 ticks (~10 seconds at speed 1)
+    autoSaveTimer++;
+    if(autoSaveTimer >= 600) {
+        autoSaveTimer = 0;
+        autoSave();
+    }
+
+    // Victory check
+    if(currentEra >= 4 && buildCount >= 50 && !victoryShown) {
+        victoryShown = true;
+        setTimeout(showVictory, 1000);
+    }
+
     checkAchievements();
     updateHUD();
     checkEraAdvance();
@@ -1525,8 +1892,9 @@ function updateHUD() {
     setRate('rr-gold', rates.gold);
 
     // Year display
-    const eraYear = ERA_YEARS[currentEra];
-    document.getElementById('year-display').textContent = eraYear;
+    // Dynamic year display
+    const yearStr = gameYear < 0 ? `기원전 ${Math.abs(gameYear)}년` : `${gameYear}년`;
+    document.getElementById('year-display').textContent = yearStr;
 
     // Era label
     document.getElementById('era-label').textContent = ERAS[currentEra];
@@ -1582,7 +1950,7 @@ function onMinimapClick(e) {
 
 // ===================== ACHIEVEMENTS =====================
 function checkAchievements() {
-    const state = { buildCount, currentEra, resources, disastersSurvived };
+    const state = { buildCount, currentEra, resources, disastersSurvived, usedFastSpeed };
     for(const ach of ACHIEVEMENTS) {
         if(!unlockedAchievements.has(ach.id) && ach.check(state)) {
             unlockedAchievements.add(ach.id);
@@ -1662,6 +2030,8 @@ function loadGame() {
         yearCounter = data.yearCounter || 0;
         unlockedAchievements = new Set(data.unlocked || []);
         disastersSurvived = data.disastersSurvived || 0;
+        gameYear = data.gameYear || ERA_YEAR_START[currentEra];
+        chronicle = data.chronicle || [];
 
         // Rehydrate grid - look up building data
         grid = data.grid.map(row => row.map(cell => {
@@ -1755,6 +2125,9 @@ function advanceEra() {
 
     playEraSound();
     checkAchievements();
+    addChronicle('🏛️', req.title + ' - ' + req.sub);
+    gameYear = ERA_YEAR_START[currentEra];
+    restartBGM();
     toast('새로운 시대가 시작되었어요!');
     render();
 }
@@ -1850,6 +2223,7 @@ function zoomOut() { zoom = Math.max(0.4, zoom / 1.15); render(); }
 
 function setSpeed(s) {
     speed = s;
+    if(s === 3) usedFastSpeed = true;
     document.querySelectorAll('#speed-ctrl button').forEach((b,i) => {
         b.classList.toggle('active', i === s);
     });
@@ -1862,6 +2236,242 @@ function toast(msg) {
     document.body.appendChild(t);
     setTimeout(() => t.remove(), 2200);
 }
+
+
+// ===================== CHRONICLE =====================
+function addChronicle(icon, text) {
+    const yearStr = gameYear < 0 ? `BC ${Math.abs(gameYear)}` : `AD ${gameYear}`;
+    chronicle.unshift({ icon, text, year: yearStr });
+    if(chronicle.length > 50) chronicle.pop();
+}
+
+function showChronicle() {
+    playClickSound();
+    const list = document.getElementById('chronicle-list');
+    list.innerHTML = '';
+    if(chronicle.length === 0) {
+        list.innerHTML = '<p style="color:#aaa;text-align:center;">아직 기록이 없어요</p>';
+    } else {
+        for(const entry of chronicle) {
+            const div = document.createElement('div');
+            div.className = 'chron-entry';
+            div.innerHTML = `<span class="chron-icon">${entry.icon}</span><div><div class="chron-text">${entry.text}</div><div class="chron-year">${entry.year}</div></div>`;
+            list.appendChild(div);
+        }
+    }
+    document.getElementById('chronicle-panel').classList.add('show');
+}
+
+function closeChronicle(e) {
+    if(e && e.target.id !== 'chronicle-panel' && e.target.tagName !== 'BUTTON') return;
+    document.getElementById('chronicle-panel').classList.remove('show');
+}
+
+// ===================== STATISTICS =====================
+function showStats() {
+    playClickSound();
+    drawStatsChart();
+    const details = document.getElementById('stats-details');
+    const playTime = Math.floor(yearCounter / 60);
+    details.innerHTML = `
+        <div class="stat-row"><span class="stat-label">현재 시대</span><span class="stat-value">${ERAS[currentEra]}</span></div>
+        <div class="stat-row"><span class="stat-label">건물 수</span><span class="stat-value">${buildCount}개</span></div>
+        <div class="stat-row"><span class="stat-label">인구</span><span class="stat-value">${resources.pop}명</span></div>
+        <div class="stat-row"><span class="stat-label">식량</span><span class="stat-value">${resources.food}</span></div>
+        <div class="stat-row"><span class="stat-label">금</span><span class="stat-value">${resources.gold}</span></div>
+        <div class="stat-row"><span class="stat-label">행복도</span><span class="stat-value">${resources.happy}%</span></div>
+        <div class="stat-row"><span class="stat-label">문화</span><span class="stat-value">${resources.culture}</span></div>
+        <div class="stat-row"><span class="stat-label">극복한 재해</span><span class="stat-value">${disastersSurvived}회</span></div>
+        <div class="stat-row"><span class="stat-label">업적</span><span class="stat-value">${unlockedAchievements.size}/${ACHIEVEMENTS.length}</span></div>
+        <div class="stat-row"><span class="stat-label">플레이 시간</span><span class="stat-value">${playTime}분</span></div>
+    `;
+    document.getElementById('stats-panel').classList.add('show');
+}
+
+function drawStatsChart() {
+    const c = document.getElementById('stats-chart');
+    const ctx2 = c.getContext('2d');
+    const w = c.width, h = c.height;
+    ctx2.clearRect(0, 0, w, h);
+    ctx2.fillStyle = 'rgba(0,0,0,0.3)';
+    ctx2.fillRect(0, 0, w, h);
+
+    // Grid lines
+    ctx2.strokeStyle = 'rgba(255,255,255,0.08)';
+    ctx2.lineWidth = 1;
+    for(let i=1; i<4; i++) {
+        ctx2.beginPath();
+        ctx2.moveTo(0, h * i/4);
+        ctx2.lineTo(w, h * i/4);
+        ctx2.stroke();
+    }
+
+    const datasets = [
+        { data: statsHistory.pop, color: '#60e0ff', label: '인구' },
+        { data: statsHistory.gold, color: '#ffd700', label: '금' },
+        { data: statsHistory.food, color: '#60ff80', label: '식량' },
+        { data: statsHistory.culture, color: '#ff80c0', label: '문화' }
+    ];
+
+    // Legend
+    let lx = 10;
+    ctx2.font = '10px sans-serif';
+    for(const ds of datasets) {
+        ctx2.fillStyle = ds.color;
+        ctx2.fillRect(lx, 6, 8, 8);
+        ctx2.fillStyle = '#ccc';
+        ctx2.fillText(ds.label, lx + 12, 14);
+        lx += 50;
+    }
+
+    for(const ds of datasets) {
+        if(ds.data.length < 2) continue;
+        const maxVal = Math.max(1, ...ds.data);
+        ctx2.strokeStyle = ds.color;
+        ctx2.lineWidth = 1.5;
+        ctx2.beginPath();
+        ds.data.forEach((v, i) => {
+            const x = (i / (ds.data.length - 1)) * (w - 20) + 10;
+            const y = h - 10 - ((v / maxVal) * (h - 30));
+            if(i === 0) ctx2.moveTo(x, y);
+            else ctx2.lineTo(x, y);
+        });
+        ctx2.stroke();
+    }
+}
+
+function closeStats(e) {
+    if(e && e.target.id !== 'stats-panel' && e.target.tagName !== 'BUTTON') return;
+    document.getElementById('stats-panel').classList.remove('show');
+}
+
+// ===================== ADVISOR =====================
+function showAdvisor() {
+    const tip = ADVISOR_TIPS[Math.floor(Math.random() * ADVISOR_TIPS.length)];
+    document.getElementById('adv-text').textContent = tip;
+    document.getElementById('advisor').classList.add('show');
+    advisorShown = true;
+    setTimeout(() => {
+        closeAdvisor();
+        advisorShown = false;
+    }, 8000);
+}
+
+function closeAdvisor() {
+    document.getElementById('advisor').classList.remove('show');
+}
+
+// ===================== FLOATING NUMBERS =====================
+function showFloatingNum(text, isPos) {
+    const el = document.createElement('div');
+    el.className = 'float-num ' + (isPos ? 'pos' : 'neg');
+    el.textContent = text;
+    el.style.left = (10 + Math.random() * 60) + 'px';
+    el.style.top = '42px';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 1600);
+}
+
+// ===================== AUTO-SAVE =====================
+function autoSave() {
+    try {
+        const data = {
+            v: 2,
+            grid: grid.map(row => row.map(cell => cell ? { id: cell.id, era: cell.era, isExtra: !!cell.isExtra } : null)),
+            currentEra, buildCount, resources, yearCounter,
+            unlocked: Array.from(unlockedAchievements),
+            disastersSurvived, gameYear, chronicle: chronicle.slice(0, 20)
+        };
+        localStorage.setItem(SAVE_KEY, JSON.stringify(data));
+        const ind = document.getElementById('autosave-ind');
+        ind.classList.remove('show');
+        void ind.offsetWidth;
+        ind.classList.add('show');
+    } catch(e) {}
+}
+
+// ===================== VICTORY =====================
+function showVictory() {
+    const totalScore = resources.pop + resources.gold + resources.culture + buildCount * 10;
+    const stars = totalScore > 2000 ? '⭐⭐⭐' : totalScore > 1000 ? '⭐⭐' : '⭐';
+    document.getElementById('v-stars').textContent = stars;
+    document.getElementById('v-stats').innerHTML = `
+        <p>👥 최종 인구: ${resources.pop}명</p>
+        <p>💰 보유 금: ${resources.gold}</p>
+        <p>🏛️ 문화 수치: ${resources.culture}</p>
+        <p>🏘️ 건물 수: ${buildCount}개</p>
+        <p>🛡️ 극복한 재해: ${disastersSurvived}회</p>
+        <p>🏆 업적: ${unlockedAchievements.size}/${ACHIEVEMENTS.length}</p>
+        <p style="margin-top:8px;color:#ffd700;font-weight:bold;">총점: ${totalScore}점</p>
+    `;
+    document.getElementById('victory-overlay').classList.add('show');
+    addChronicle('🎉', '근대화를 달성하고 한국 5천년 역사를 완성했습니다!');
+
+    // Grand fireworks
+    for(let i=0; i<100; i++) {
+        setTimeout(() => {
+            const cx = Math.random() * canvas.width;
+            const cy = Math.random() * canvas.height * 0.6;
+            for(let j=0; j<15; j++) {
+                const angle = (j / 15) * Math.PI * 2;
+                particles.push({
+                    x: cx, y: cy,
+                    vx: Math.cos(angle) * (2 + Math.random()*2),
+                    vy: Math.sin(angle) * (2 + Math.random()*2),
+                    life: 50, maxLife: 50, size: 2,
+                    color: ['#ffd700','#ff6080','#60ff80','#6080ff','#ff80ff'][Math.floor(Math.random()*5)],
+                    type: 'spark'
+                });
+            }
+        }, i * 50);
+    }
+}
+
+function closeVictory() {
+    document.getElementById('victory-overlay').classList.remove('show');
+}
+
+// ===================== BGM SYSTEM =====================
+let bgmInterval = null;
+let bgmOscillators = [];
+
+function startBGM() {
+    if(!audioCtx || audioMuted || bgmInterval) return;
+    const eraPentatonic = [
+        [262, 294, 330, 392, 440],
+        [330, 370, 440, 494, 554],
+        [294, 330, 392, 440, 523],
+        [262, 330, 392, 494, 587],
+        [349, 392, 440, 523, 587]
+    ];
+    const notes = eraPentatonic[currentEra] || eraPentatonic[0];
+    let noteIdx = 0;
+    bgmInterval = setInterval(() => {
+        if(audioMuted || speed === 0) return;
+        const freq = notes[noteIdx % notes.length];
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = currentEra < 3 ? 'triangle' : 'sine';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.5);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 1.5);
+        noteIdx++;
+    }, 2000);
+}
+
+function stopBGM() {
+    if(bgmInterval) { clearInterval(bgmInterval); bgmInterval = null; }
+}
+
+function restartBGM() {
+    stopBGM();
+    startBGM();
+}
+
 
 // ===================== MAIN LOOP =====================
 let lastRender = 0;
@@ -1923,8 +2533,8 @@ function init() {
     camY = -50;
 
     // Initialize audio on first user interaction
-    document.body.addEventListener('click', initAudio, { once: true });
-    document.body.addEventListener('touchstart', initAudio, { once: true });
+    document.body.addEventListener('click', () => { initAudio(); setTimeout(startBGM, 500); }, { once: true });
+    document.body.addEventListener('touchstart', () => { initAudio(); setTimeout(startBGM, 500); }, { once: true });
 
     render();
     drawMinimap();
@@ -1938,9 +2548,34 @@ function init() {
     } catch(err) {}
 
     toast('한국사 도시건설에 오신 것을 환영해요!');
+
+    // Generate star field
+    for(let i=0; i<120; i++) {
+        starField.push({
+            x: Math.random(), y: Math.random() * 0.6,
+            size: 0.5 + Math.random() * 1.5,
+            blink: Math.random() * Math.PI * 2,
+            speed: 0.02 + Math.random() * 0.03
+        });
+    }
+
+    // Generate terrain decorations (grass, rocks, small trees)
+    for(let gy=0; gy<GRID; gy++) {
+        for(let gx=0; gx<GRID; gx++) {
+            const hash = (gx * 73 + gy * 131 + gx * gy * 7) % 100;
+            if(hash < 15) {
+                terrainDecor.push({ gx, gy, type: hash < 5 ? 'tree' : hash < 10 ? 'rock' : 'grass' });
+            }
+        }
+    }
+
+    // Initialize chronicle
+    addChronicle('🏛️', '고조선이 세워졌습니다. 도시 건설을 시작하세요!');
+    lastResources = { ...resources };
 }
 
 init();
 </script>
 </body>
 </html>
+
