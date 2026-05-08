@@ -1,17 +1,19 @@
 {
-  "name": "한국사 도시건설 - 역사 심시티",
-  "short_name": "역사심시티",
-  "description": "한국사 기반 도시 건설 시뮬레이션",
-  "start_url": "./index.html",
+  "name": "한국사 도시건설 v4.0",
+  "short_name": "도시건설",
+  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 정책, 교역, 퀘스트, 업그레이드 시스템 포함.",
+  "start_url": "index.html",
   "display": "standalone",
+  "orientation": "any",
   "background_color": "#1a1a2e",
   "theme_color": "#1a1a2e",
+  "lang": "ko",
+  "categories": ["games", "education"],
   "icons": [
     {
       "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1a2e'/%3E%3Crect x='10' y='30' width='12' height='22' rx='2' fill='%234a6fa5'/%3E%3Crect x='26' y='18' width='14' height='34' rx='2' fill='%23C4956A'/%3E%3Cpath d='M26 18l7-7 7 7z' fill='%238B6B3D'/%3E%3Crect x='44' y='24' width='12' height='28' rx='2' fill='%235a8a5a'/%3E%3C/svg%3E",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "sizes": "64x64",
+      "type": "image/svg+xml"
     }
   ]
 }
