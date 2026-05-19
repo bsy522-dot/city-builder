@@ -1,5 +1,5 @@
-const CACHE_NAME = 'city-builder-v5';
-const ASSETS = ['index.html', 'manifest.json'];
+const CACHE_NAME = 'city-builder-v6';
+const ASSETS = ['index.html', 'manifest.json', 'v6_patch.js'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(ASSETS)));
