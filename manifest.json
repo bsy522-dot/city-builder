@@ -1,7 +1,7 @@
 {
-  "name": "한국사 도시건설 v8.0",
+  "name": "한국사 도시건설 v9.0",
   "short_name": "도시건설",
-  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 교통인프라3종, 군사방어, 축제4종, 시나리오캠페인8종, 외교5국, 정책12종, 불가사의8종, 무역로6개, 기술연구트리 15종, 위인 10명, 한국사퀴즈 70문제, 74업적, 26x26 대형맵.",
+  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 인구계층5종, 교역소8품목, 재해대비6시설, 문화유산10종, 시민의회, 도시랭킹Canvas, 교통인프라3종, 군사방어, 축제4종, 시나리오캠페인8종, 외교5국, 정책12종, 불가사의8종, 무역로6개, 기술연구 15종, 위인 10명, 한국사퀴즈 85문제, 86업적, 26x26 대형맵.",
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "any",
@@ -18,19 +18,24 @@
   ],
   "shortcuts": [
     {
-      "name": "교통 인프라",
-      "url": "index.html#transport",
-      "description": "도로를 건설하여 도시를 연결합니다"
+      "name": "교역소",
+      "url": "index.html#market",
+      "description": "물품을 사고팔아 금을 벌 수 있습니다"
     },
     {
-      "name": "시나리오 캠페인",
-      "url": "index.html#campaign",
-      "description": "목표를 달성하는 시나리오에 도전합니다"
+      "name": "문화유산",
+      "url": "index.html#heritage",
+      "description": "한국사 문화유산을 발견하고 수집합니다"
     },
     {
-      "name": "축제",
-      "url": "index.html#festival",
-      "description": "4계절 축제를 열어 자원 보너스를 받습니다"
+      "name": "도시 랭킹",
+      "url": "index.html#ranking",
+      "description": "도시 종합 점수와 등급을 확인합니다"
+    },
+    {
+      "name": "시민 의회",
+      "url": "index.html#council",
+      "description": "시민 청원을 해결하여 만족도를 높입니다"
     }
   ]
 }
