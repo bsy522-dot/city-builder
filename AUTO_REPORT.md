@@ -1110,3 +1110,66 @@ Citizen Happiness(5지표), Campaign(8종), SFX 6종, Keyboard Shortcuts +5
 **v12_patch.js**: 1,212줄
 
 ---
+
+## 2026-06-25 [AUTO] v13.0 전팀원 대규모 업그레이드
+
+### 1차: 벤치마킹 분석 (vs SimCity/TheoTown/Civilization)
+**기존 상태 (v12.0)**: 26x26 그리드, 교통인프라6종, 왕실재정, 도시방어8종, 주민생활24h, 건축갤러리12종, 날씨8종, 유적10곳, 칙서12종, 법률12종, 학문8종, 시장경제6종, 재해대응8종, 축제12종, 도시비교5도시, 130퀴즈, 122업적
+
+**경쟁앱 대비 열위점 (10개)**:
+1. 왕조 계승/혈통 시스템 부재 — Civilization 지도자 교체 핵심 시스템
+2. 무역로/교역 네트워크 부재 — Civilization 도시간 교역 시스템
+3. 인구 계층(농민/상인/귀족) 시뮬레이션 부재 — SimCity R/C/I 계층 시스템
+4. 외교 회담/조약 이벤트 부재 — Civilization 외교 시스템
+5. 시대별 BGM/사운드트랙 부재 — TheoTown/SimCity 배경음악 시스템
+6. 도시 명성/등급 종합 시스템 부재 — SimCity 도시 평판 시스템
+7. 건축 설계도 미리보기 부재 — SimCity 구역 계획 기능
+8. 역사 연감/연간 통계 대시보드 부재 — Civilization 인포그래픽
+9. 세금 세분화 시스템 부재 — SimCity 세금 조절 기능
+10. 도시 업그레이드 트리 부재 — TheoTown 건물 업그레이드
+
+### 2차: 개발팀 전체 투입
+
+**v13_patch.js**: 신규 (1,591줄 ~75KB, 자기완결형 IIFE 패치 모듈)
+
+1. **왕조 계승 시스템**: 12왕 (단군왕검/해모수/주몽/온조/혁거세/대조영/왕건/세종/이순신/정조/흥선대원군/고종), Canvas 가계도, 왕 특성+버프, 시대 연동 자동 해금
+2. **무역로 관리자**: 5국 (중국/일본/류큐/여진/아라비아) Canvas 네트워크도, 수출/수입 물자, 관계도, 매턴 교역 수입
+3. **인구 계층 시뮬레이터**: 농민/상인/귀족 3계층, Canvas 피라미드 시각화, 세율 조절, 만족도 관리, 성장 시뮬레이션
+4. **외교 회담실**: 5국 (명나라/일본/여진/몽골/류큐), Canvas 관계도, 선물/교역/동맹/위협 4액션, 조약 체결
+5. **시대별 BGM 주크박스**: 8곡 (궁중아악/전쟁행진곡/마을평화/축제풍류/고려가요/세종의아침/이순신출정/근대여명) Web Audio 합성, BPM/음색 차별화
+6. **도시 명성 시스템**: 6축 (군사/경제/문화/외교/복지/기술) Radar Canvas, S~D등급, 게임 상태 자동 반영
+7. **건축 설계도 플래너**: 8x8 Canvas 그리드, 9종 브러시 (빈칸/주거/상업/군사/문화/농업/도로/수로/성벽), 클릭 배치, 랜덤 배치
+8. **역사 연감 대시보드**: Canvas 추이 꺾은선 4축 (금화/인구/문화/명성), 6지표 카드, 최근 기록 추이
+
+**추가 콘텐츠**:
+- 퀴즈 +15문 (130→145): 세금/무역/인구/외교/음악/도시/기술/계층/건축/왕조/이념/경제
+- 업적 +12개 (122→134): dynasty_first/dynasty_5kings/trade_first/trade_all/pop_5000/diplomacy_ally/diplomacy_3ally/bgm_listener/reputation_B/blueprint_fill/yearbook_5/v13_explorer
+- SFX 12종: dynasty_crown/trade_deal/population_grow/diplomacy_treaty/bgm_play/reputation_up/blueprint_place/yearbook_open/tax_collect/upgrade_complete/achieve_v13/feature_open
+- 키보드 Shift+Z/X/N/H/J/U/B/I + 하단 스크롤 네비바 8종
+
+**SEO/메타 갱신**: index.html title/desc/keywords/OG/Twitter/JSON-LD 전면 v13 갱신
+**sw.js**: city-builder-v12 → city-builder-v13 (v13_patch.js PRECACHE)
+**manifest.json**: v13.0 설명+shortcuts 10종
+
+### 3차: 품질팀 검증
+
+- **JS 문법**: `node -c v13_patch.js` → PASS
+- **괄호 밸런스**: Braces 296/296 BALANCED, Brackets 148/148 BALANCED (Parens 문자열 내 HTML 포함 935/934)
+- **div 태그**: index.html 148/148 open/close BALANCED
+- **외부 CDN**: 0건 (w3.org SVG namespace 제외)
+- **개인정보**: 0건 감지
+- **HTML entities**: 따옴표 &quot; 인코딩 적용
+
+### 4차: 마무리
+
+- 커밋: `[AUTO] 2026-06-25 city-builder v13.0`
+- 브랜치: main
+
+### 정량 지표
+
+**업적**: 122 → 134 (+10%)
+**퀴즈**: 130 → 145 (+12%)
+**신규 시스템 수**: 8개 (왕조계승/무역로/인구계층/외교회담/BGM주크박스/도시명성/설계도플래너/역사연감)
+**v13_patch.js**: 1,591줄
+
+---

@@ -1,7 +1,7 @@
 {
-  "name": "한국사 도시건설 v12.0",
+  "name": "한국사 도시건설 v13.0",
   "short_name": "도시건설",
-  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 교통인프라Canvas6종, 왕실재정대시보드Canvas, 도시방어시뮬레이터Canvas8종, 주민생활관찰기Canvas24시간, 건축양식갤러리12종, 날씨시스템4계절8종, 유적발굴탐험10곳, 왕명칙서12종, 법률12종, 학문8종, 시장경제6종, 재해대응8종, 축제12종, 도시비교5도시, 한국사퀴즈130문제, 122업적, 26x26 대형맵.",
+  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 왕조계승12왕Canvas, 무역로관리Canvas5국, 인구계층시뮬레이터Canvas피라미드, 외교회담실5국, 시대별BGM주크박스8곡, 도시명성6축RadarCanvas, 건축설계도플래너Canvas, 역사연감대시보드Canvas, 교통인프라6종, 왕실재정, 도시방어8종, 주민생활24시간, 건축갤러리12종, 날씨8종, 유적10곳, 칙서12종, 한국사퀴즈145문제, 134업적, 26x26 대형맵.",
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "any",
@@ -18,54 +18,54 @@
   ],
   "shortcuts": [
     {
+      "name": "왕조 계승",
+      "url": "index.html#dynasty",
+      "description": "12명의 역대 왕과 왕조 계보를 확인합니다"
+    },
+    {
+      "name": "무역로 관리",
+      "url": "index.html#trade",
+      "description": "5국과의 무역로를 개통하고 관리합니다"
+    },
+    {
+      "name": "인구 계층",
+      "url": "index.html#population",
+      "description": "농민/상인/귀족 계층을 시뮬레이션합니다"
+    },
+    {
+      "name": "외교 회담",
+      "url": "index.html#diplomacy",
+      "description": "5국과 외교 관계를 맺고 조약을 체결합니다"
+    },
+    {
+      "name": "BGM 주크박스",
+      "url": "index.html#bgm",
+      "description": "시대별 8곡의 배경음악을 감상합니다"
+    },
+    {
+      "name": "도시 명성",
+      "url": "index.html#reputation",
+      "description": "6축 레이더로 도시 종합 등급을 확인합니다"
+    },
+    {
+      "name": "건축 설계도",
+      "url": "index.html#blueprint",
+      "description": "8x8 그리드에 도시 배치를 계획합니다"
+    },
+    {
+      "name": "역사 연감",
+      "url": "index.html#yearbook",
+      "description": "도시 발전 기록과 통계를 확인합니다"
+    },
+    {
       "name": "교통 인프라",
       "url": "index.html#transport",
       "description": "6종 교통 시설을 건설하여 도시를 연결합니다"
     },
     {
-      "name": "왕실 재정",
-      "url": "index.html#treasury",
-      "description": "세입/세출 대시보드로 재정을 관리합니다"
-    },
-    {
       "name": "도시 방어",
       "url": "index.html#defense",
       "description": "8종 방어 시설로 도시를 보호합니다"
-    },
-    {
-      "name": "건축 갤러리",
-      "url": "index.html#architecture",
-      "description": "한국 건축 5천년 변천사를 감상합니다"
-    },
-    {
-      "name": "유적 발굴",
-      "url": "index.html#relic",
-      "description": "10곳의 유적을 발굴하여 보물을 얻습니다"
-    },
-    {
-      "name": "왕명 칙서",
-      "url": "index.html#decree",
-      "description": "12종 왕명을 발포하여 도시를 다스립니다"
-    },
-    {
-      "name": "법률 제도",
-      "url": "index.html#law",
-      "description": "12종 법률을 제정하여 도시를 다스립니다"
-    },
-    {
-      "name": "도시 비교",
-      "url": "index.html#compare",
-      "description": "역사 도시와 내 도시를 비교 분석합니다"
-    },
-    {
-      "name": "퀴즈 대결",
-      "url": "index.html#quiz-battle",
-      "description": "역사 인물과 1:1 퀴즈 대결을 합니다"
-    },
-    {
-      "name": "문화유산",
-      "url": "index.html#heritage",
-      "description": "한국사 문화유산을 발견하고 수집합니다"
     }
   ]
 }
