@@ -1,7 +1,7 @@
 {
-  "name": "한국사 도시건설 v12.0",
+  "name": "한국사 도시건설 v13.0",
   "short_name": "도시건설",
-  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 교통인프라Canvas6종, 왕실재정대시보드Canvas, 도시방어시뮬레이터Canvas8종, 주민생활관찰기Canvas24시간, 건축양식갤러리12종, 날씨시스템4계절8종, 유적발굴탐험10곳, 왕명칙서12종, 법률12종, 학문8종, 시장경제6종, 재해대응8종, 축제12종, 도시비교5도시, 한국사퀴즈130문제, 122업적, 26x26 대형맵.",
+  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 왕실도서관Canvas12종, 직업시스템CanvasPie8종, 첩보네트워크Canvas6국, 국제교역항CanvasLine8종, 도시미화Canvas환경지수10종, 왕위계승CanvasTree12왕, 반란시스템, 종교신앙CanvasRadar6종, 교통인프라Canvas6종, 왕실재정대시보드Canvas, 도시방어시뮬레이터Canvas8종, 주민생활관찰기Canvas24시간, 건축양식갤러리12종, 날씨시스템4계절8종, 유적발굴탐험10곳, 왕명칙서12종, 법률12종, 학문8종, 시장경제6종, 재해대응8종, 축제12종, 도시비교5도시, 한국사퀴즈145문제, 134업적, 26x26 대형맵.",
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "any",
@@ -66,6 +66,41 @@
       "name": "문화유산",
       "url": "index.html#heritage",
       "description": "한국사 문화유산을 발견하고 수집합니다"
+    },
+    {
+      "name": "왕실 도서관",
+      "url": "index.html#library",
+      "description": "12종 고서적을 수집하고 학문을 연구합니다"
+    },
+    {
+      "name": "직업 시스템",
+      "url": "index.html#occupation",
+      "description": "8종 직업으로 주민을 배치합니다"
+    },
+    {
+      "name": "첩보 네트워크",
+      "url": "index.html#spy",
+      "description": "6국에 첩자를 파견하여 정보를 수집합니다"
+    },
+    {
+      "name": "국제 교역",
+      "url": "index.html#trade",
+      "description": "8종 교역품으로 국제 무역을 합니다"
+    },
+    {
+      "name": "도시 미화",
+      "url": "index.html#beautify",
+      "description": "10종 조경으로 도시 환경을 개선합니다"
+    },
+    {
+      "name": "왕위 계승",
+      "url": "index.html#succession",
+      "description": "12대 왕위 계승 역사를 체험합니다"
+    },
+    {
+      "name": "종교 신앙",
+      "url": "index.html#religion",
+      "description": "6종 종교로 주민 신앙을 관리합니다"
     }
   ]
 }
