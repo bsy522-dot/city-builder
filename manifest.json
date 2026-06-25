@@ -1,7 +1,7 @@
 {
-  "name": "한국사 도시건설 v12.0",
+  "name": "한국사 도시건설 v13.0",
   "short_name": "도시건설",
-  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 교통인프라Canvas6종, 왕실재정대시보드Canvas, 도시방어시뮬레이터Canvas8종, 주민생활관찰기Canvas24시간, 건축양식갤러리12종, 날씨시스템4계절8종, 유적발굴탐험10곳, 왕명칙서12종, 법률12종, 학문8종, 시장경제6종, 재해대응8종, 축제12종, 도시비교5도시, 한국사퀴즈130문제, 122업적, 26x26 대형맵.",
+  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 왕조계승Canvas6왕조, 한국발명품전시관Canvas12종, 무역로시각화기Canvas8종, 인구통계대시보드Canvas, 문화영향력맵Canvas6영역, 한국사연표Canvas12사건, 활쏘기미니게임Canvas, 도시업그레이드트리Canvas12노드, 교통인프라Canvas6종, 왕실재정대시보드Canvas, 도시방어시뮬레이터Canvas8종, 주민생활관찰기Canvas24시간, 건축양식갤러리12종, 날씨시스템4계절8종, 유적발굴탐험10곳, 왕명칙서12종, 법률12종, 학문8종, 시장경제6종, 재해대응8종, 축제12종, 도시비교5도시, 한국사퀴즈145문제, 134업적, 26x26 대형맵.",
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "any",
@@ -17,6 +17,46 @@
     }
   ],
   "shortcuts": [
+    {
+      "name": "왕조 계승",
+      "url": "index.html#dynasty",
+      "description": "6왕조 계보를 관리하고 왕조를 계승합니다"
+    },
+    {
+      "name": "발명품 전시관",
+      "url": "index.html#inventions",
+      "description": "12종 한국 발명품을 발견하고 전시합니다"
+    },
+    {
+      "name": "무역로",
+      "url": "index.html#trade-routes",
+      "description": "8종 무역로를 개척하여 교역합니다"
+    },
+    {
+      "name": "인구 통계",
+      "url": "index.html#demographics",
+      "description": "인구 변화를 추적하고 분석합니다"
+    },
+    {
+      "name": "문화 영향력",
+      "url": "index.html#culture-map",
+      "description": "6영역 문화 영향력을 확장합니다"
+    },
+    {
+      "name": "한국사 연표",
+      "url": "index.html#timeline",
+      "description": "12대 역사 사건을 연표로 봅니다"
+    },
+    {
+      "name": "활쏘기",
+      "url": "index.html#archery",
+      "description": "활쏘기 미니게임으로 금화를 획득합니다"
+    },
+    {
+      "name": "업그레이드 트리",
+      "url": "index.html#upgrade-tree",
+      "description": "12종 도시 업그레이드를 연구합니다"
+    },
     {
       "name": "교통 인프라",
       "url": "index.html#transport",
