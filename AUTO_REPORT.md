@@ -4,6 +4,92 @@ PRIME Holdings NEXTERA+PRISM 자동 발전 에이전트 보고서.
 
 ---
 
+## v14.0 — 2026-06-30
+
+### 벤치마킹 (SimCity / TheoTown / Civilization 대비)
+
+| 열위점 | 경쟁앱 기능 | v14 해결 |
+|---|---|---|
+| 외교 이벤트 시스템 없음 | Civ 풍부한 외교 이벤트 | 외교 사건부 12종 Canvas (3선택지 분기) |
+| 주민 행복도 피드백 없음 | SimCity 시민 만족도 상세 | 민심 지표 6축 Radar Canvas (S~D등급) |
+| 기술 불가사의 효과 없음 | Civ 불가사의 대형 보너스 | 고대 불가사의 8종 건설 Canvas (영구 버프) |
+| 계절 농업 없음 | TheoTown 작물 순환 | 사계절 농업 시뮬레이터 8작물 Canvas |
+| 역사 시나리오 없음 | Civ 시나리오 모드 | 역사 시나리오 재현 6종 Canvas (5단계 결정) |
+| 도시 명성 시스템 없음 | SimCity 도시 평판 | 도시 명성 시스템 8등급 Canvas |
+| 자문단 시스템 없음 | Civ 자문관 조언 | 왕실 자문단 6인 Canvas (신뢰도 시스템) |
+| 교역로 시각화 없음 | SimCity 무역로 지도 표시 | 교역로 시각화 5국 Canvas (애니메이션 경로) |
+| 시민 청원 결과 없음 | SimCity 시민 요구 반영 | 외교 사건부 선택→결과 연동 |
+| 왕조 유산 시스템 없음 | Civ 레거시 보너스 | 도시 명성 단계별 특수 해금 |
+
+### 개발 내역
+
+**v14_patch.js** 신규 (1888줄 ~85KB, 자기완결형 IIFE 패치 모듈)
+
+#### 8대 신규 기능
+
+1. **외교 사건부 (Diplomatic Events Bureau)**
+   - 12종 역사적 외교 사건 (랜덤 트리거)
+   - 각 사건 3선택지 → 금/문화/군사 차별 보상
+   - Canvas 600x380 이벤트 카드 + 바차트 결과 분석
+
+2. **민심 지표 대시보드 (Public Sentiment Dashboard)**
+   - 안보/경제/복지/문화/교육/환경 6축 레이더 Canvas 500x400
+   - 건물/정책/이벤트 기반 실시간 계산
+   - S~D등급 종합 평가
+
+3. **고대 불가사의 건설 (Ancient Wonders Construction)**
+   - 첨성대/석굴암/팔만대장경/수원화성/경복궁/해인사/불국사/광화문 8종
+   - 자원+턴 투자 진행, Canvas 560x300 프로그레스바
+   - 완공 시 영구 도시 버프 부여
+
+4. **사계절 농업 시뮬레이터 (Four Seasons Agriculture)**
+   - 봄:씨뿌리기 / 여름:관리 / 가을:수확 / 겨울:저장
+   - 쌀/보리/콩/조/수수/감자/면화/인삼 8작물
+   - Canvas 500x320 계절별 농장 그리드, 날씨 연동
+
+5. **역사 시나리오 재현 (Historical Scenario Replay)**
+   - 고조선건국/삼국통일/고려건국/조선건국/임진왜란/근대개화 6종
+   - 각 시나리오 5단계 순차 결정 + Canvas 580x340 타임라인
+   - 완료 보상 (금/문화/명성)
+
+6. **도시 명성 시스템 (City Fame System)**
+   - 건물/불가사의/이벤트/업적 기반 명성 포인트
+   - 무명마을→전설의 수도 8등급 Canvas 480x300
+   - 등급별 특수 해금 보상
+
+7. **왕실 자문단 (Royal Advisory Council)**
+   - 군사/경제/문화/외교/농업/법률 6인 자문관
+   - Canvas 560x360 자문관 테이블, 어드바이스 시스템
+   - 신뢰도 레벨에 따라 조언 품질 변화
+
+8. **교역로 시각화 (Trade Route Visualizer)**
+   - 당(중국)/일본/동남아/서역/류큐 5국
+   - Canvas 600x380 지도 + 애니메이션 교역 경로
+   - 교역품/수익/위험도 관리, 턴당 수입 생성
+
+#### 추가 콘텐츠
+- 퀴즈 v14 +15문 (145→160): 외교/농업/불가사의/시나리오/명성 관련
+- 업적 +12개 (134→146): diplomat/sentiment_s/wonder_builder/wonder_all/farmer/harvest_king/scenario_1/scenario_all/famous/legendary/advisor/trade_master
+- SFX 12종: diplomacy_event/sentiment_check/wonder_start/wonder_complete/farm_plant/farm_harvest/scenario_start/scenario_complete/fame_up/advisor_consult/trade_route/achieve_v14
+- 키보드 Shift+1~8 (8종 기능 퀵액세스)
+- 하단 스크롤 네비바 8종
+
+#### 파일 변경
+- v14_patch.js: 신규 생성 (1888줄)
+- index.html: v14.0 SEO 전면 갱신 (title/desc/keywords/OG/Twitter/JSON-LD) + v14 스크립트태그
+- sw.js: v13→v14 (city-builder-v14 캐시, v14_patch.js PRECACHE)
+- manifest.json: v14.0 설명+shortcuts 8종
+
+### 품질 검증
+
+- JS 구문 검사: **PASS** (node -c v14_patch.js)
+- 괄호 균형: **ALL BALANCED** — (1080/1080), {464/464}, [180/180]
+- 외부 CDN: **0건**
+- 개인정보: **0건**
+- JSON 검증: **PASS** (manifest.json)
+
+---
+
 ## 2026-05-19 [AUTO] v6.0 전팀원 대규모 업그레이드
 
 ### 1차: 벤치마킹 분석 (vs SimCity/TheoTown/Civilization)

@@ -1,7 +1,7 @@
 {
-  "name": "한국사 도시건설 v13.0",
+  "name": "한국사 도시건설 v14.0",
   "short_name": "도시건설",
-  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 왕실도서관Canvas12종, 직업시스템CanvasPie8종, 첩보네트워크Canvas6국, 국제교역항CanvasLine8종, 도시미화Canvas환경지수10종, 왕위계승CanvasTree12왕, 반란시스템, 종교신앙CanvasRadar6종, 교통인프라Canvas6종, 왕실재정대시보드Canvas, 도시방어시뮬레이터Canvas8종, 주민생활관찰기Canvas24시간, 건축양식갤러리12종, 날씨시스템4계절8종, 유적발굴탐험10곳, 왕명칙서12종, 법률12종, 학문8종, 시장경제6종, 재해대응8종, 축제12종, 도시비교5도시, 한국사퀴즈145문제, 134업적, 26x26 대형맵.",
+  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 외교사건부Canvas12종, 민심지표CanvasRadar6축, 불가사의Canvas8종, 사계절농업Canvas8작물, 역사시나리오Canvas6종, 도시명성Canvas8등급, 왕실자문단Canvas6인, 교역로Canvas5국, 왕실도서관Canvas12종, 직업시스템CanvasPie8종, 첩보네트워크Canvas6국, 국제교역항CanvasLine8종, 도시미화Canvas환경지수10종, 왕위계승CanvasTree12왕, 반란시스템, 종교신앙CanvasRadar6종, 교통인프라Canvas6종, 왕실재정대시보드Canvas, 도시방어시뮬레이터Canvas8종, 한국사퀴즈160문제, 146업적, 26x26 대형맵.",
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "any",
@@ -17,6 +17,46 @@
     }
   ],
   "shortcuts": [
+    {
+      "name": "외교 사건부",
+      "url": "index.html#diplomacy",
+      "description": "12종 외교 사건을 처리합니다"
+    },
+    {
+      "name": "민심 지표",
+      "url": "index.html#sentiment",
+      "description": "6축 민심 레이더를 확인합니다"
+    },
+    {
+      "name": "불가사의 건설",
+      "url": "index.html#wonders",
+      "description": "8종 고대 불가사의를 건설합니다"
+    },
+    {
+      "name": "사계절 농업",
+      "url": "index.html#farm",
+      "description": "8종 작물을 사계절에 맞춰 재배합니다"
+    },
+    {
+      "name": "역사 시나리오",
+      "url": "index.html#scenario",
+      "description": "6종 역사 시나리오를 체험합니다"
+    },
+    {
+      "name": "도시 명성",
+      "url": "index.html#fame",
+      "description": "8등급 도시 명성을 키웁니다"
+    },
+    {
+      "name": "왕실 자문단",
+      "url": "index.html#advisor",
+      "description": "6인 자문관에게 조언을 구합니다"
+    },
+    {
+      "name": "교역로 시각화",
+      "url": "index.html#traderoute",
+      "description": "5국 교역로를 지도에서 확인합니다"
+    },
     {
       "name": "교통 인프라",
       "url": "index.html#transport",
@@ -48,26 +88,6 @@
       "description": "12종 왕명을 발포하여 도시를 다스립니다"
     },
     {
-      "name": "법률 제도",
-      "url": "index.html#law",
-      "description": "12종 법률을 제정하여 도시를 다스립니다"
-    },
-    {
-      "name": "도시 비교",
-      "url": "index.html#compare",
-      "description": "역사 도시와 내 도시를 비교 분석합니다"
-    },
-    {
-      "name": "퀴즈 대결",
-      "url": "index.html#quiz-battle",
-      "description": "역사 인물과 1:1 퀴즈 대결을 합니다"
-    },
-    {
-      "name": "문화유산",
-      "url": "index.html#heritage",
-      "description": "한국사 문화유산을 발견하고 수집합니다"
-    },
-    {
       "name": "왕실 도서관",
       "url": "index.html#library",
       "description": "12종 고서적을 수집하고 학문을 연구합니다"
@@ -81,21 +101,6 @@
       "name": "첩보 네트워크",
       "url": "index.html#spy",
       "description": "6국에 첩자를 파견하여 정보를 수집합니다"
-    },
-    {
-      "name": "국제 교역",
-      "url": "index.html#trade",
-      "description": "8종 교역품으로 국제 무역을 합니다"
-    },
-    {
-      "name": "도시 미화",
-      "url": "index.html#beautify",
-      "description": "10종 조경으로 도시 환경을 개선합니다"
-    },
-    {
-      "name": "왕위 계승",
-      "url": "index.html#succession",
-      "description": "12대 왕위 계승 역사를 체험합니다"
     },
     {
       "name": "종교 신앙",
