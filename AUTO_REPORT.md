@@ -1261,3 +1261,57 @@ Citizen Happiness(5지표), Campaign(8종), SFX 6종, Keyboard Shortcuts +5
 **v13_patch.js**: 1,509줄
 
 ---
+
+## [AUTO] 2026-07-03 city-builder v15.0
+
+### Stage 1: Benchmarking (10%)
+**벤치마크 대상**: SimCity BuildIt, TheoTown, Civilization VI
+| 기능 | SimCity | TheoTown | Civ VI | city-builder v14 |
+|------|---------|----------|--------|-------------------|
+| 수도 인프라 관리 | O (수도/하수) | O (기본) | X | X → v15 추가 |
+| 전염병/재해 대응 | O (재해) | O (재해) | O (역병) | X → v15 추가 |
+| 교육 기관 발전 | O (학교계층) | O (기본) | O (기술트리) | X → v15 추가 |
+| 야간 도시경관 | O (주야간) | X | X | X → v15 추가 |
+| 세금 정책 시뮬 | O (세금슬라이더) | O (기본세금) | O (정책) | X → v15 추가 |
+| 인구 피라미드 | X | X | X | X → v15 추가 |
+| 문명 업적 타임라인 | X | X | O (시대진행) | X → v15 추가 |
+| 전쟁 캠페인 | X | X | O (전투시스템) | X → v15 추가 |
+
+**격차 분석**: 수도인프라, 전염병대응, 교육체계, 야간경관, 세금정책은 SimCity/TheoTown의 핵심 도시관리 기능이며 city-builder에는 부재. 인구피라미드와 문명타임라인은 교육적 시각화로 경쟁제품 대비 차별화 요소. 전쟁캠페인은 Civ VI의 전투시스템에서 착안한 한국사 전투 재현.
+
+### Stage 2: Development (50%)
+**신규 기능 8종**:
+1. **수도시설관리자 Canvas 6종** (Shift+W): 우물/수도교/저수지/하수도/목욕탕/물레방아 건설, 수질지수 계산, 가로형 바차트 Canvas 시각화
+2. **전염병대응시스템 Canvas 8종4액션** (Shift+E): 역병/천연두/홍역/콜레라/장티푸스/말라리아/결핵/성홍열 8종 질병, 격리/약재/위생/기도 4가지 대응, 상태바+텍스트 Canvas
+3. **교육체계트래커 Canvas 8단계** (Shift+D): 무학-서당-향교-서원-성균관-규장각-집현전-근대학교 8단계 진행, 계단형 바차트 Canvas
+4. **야간도시경관 Canvas** (Shift+N): 달/별/건물실루엣/등불 캔버스 렌더링, 글로우이펙트, 등불배치 시스템
+5. **세금정책시뮬레이터 Canvas 5종** (Shift+T): 농업세/상업세/공업세/사치세/토지세 5종 슬라이더, 파이차트+바차트 듀얼 Canvas
+6. **인구피라미드분석기 Canvas 6계층** (Shift+P): 양반/선비/상인/농민/장인/노비 6계층 인구 피라미드, 수평 바차트 Canvas
+7. **문명업적타임라인 Canvas 12사건** (Shift+L): BC2333 단군조선부터 1897 대한제국까지 12대 업적, 수평 타임라인 Canvas
+8. **전쟁캠페인시뮬레이터 Canvas 6전투** (Shift+C): 살수대첩/귀주대첩/한산도대첩/행주대첩/황산벌전투/안시성전투, 아군vs적군 바차트 Canvas
+
+**퀴즈**: +15문제 (160→175)
+**업적**: +12개 (146→158)
+**SFX**: 12종 추가 (water_build, water_flow, epidemic_alert, epidemic_cure, edu_upgrade, night_lantern, tax_adjust, tax_collect, pop_analyze, timeline_scroll, war_attack, war_victory)
+**키보드 단축키**: 8종 추가 (Shift+W/E/D/N/T/P/L/C)
+**하단 네비게이션 바**: 8버튼 (수도/전염병/교육/야경/세금/인구/타임라인/전쟁)
+
+### Stage 3: Quality Verification (30%)
+| 검증 항목 | 결과 |
+|-----------|------|
+| JS 문법 검사 (node -c) | PASS |
+| 괄호 균형 검사 | PASS |
+| 외부 CDN 참조 | 0건 (PASS) |
+| 개인정보 노출 | 0건 (PASS) |
+| manifest.json 유효성 | PASS |
+| sw.js 문법 검사 | PASS |
+| v15_patch.js 총 라인 | 1,592줄 |
+
+### Stage 4: Finalization (10%)
+**수정 파일 4종**:
+- `v15_patch.js` (신규, 1,592줄)
+- `index.html` (SEO v14→v15, script 태그 추가)
+- `sw.js` (캐시 v14→v15, v15_patch.js 추가)
+- `manifest.json` (v14→v15, 8 shortcuts 추가)
+
+---

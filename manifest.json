@@ -1,7 +1,7 @@
 {
-  "name": "한국사 도시건설 v14.0",
+  "name": "한국사 도시건설 v15.0",
   "short_name": "도시건설",
-  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 외교사건부Canvas12종, 민심지표CanvasRadar6축, 불가사의Canvas8종, 사계절농업Canvas8작물, 역사시나리오Canvas6종, 도시명성Canvas8등급, 왕실자문단Canvas6인, 교역로Canvas5국, 왕실도서관Canvas12종, 직업시스템CanvasPie8종, 첩보네트워크Canvas6국, 국제교역항CanvasLine8종, 도시미화Canvas환경지수10종, 왕위계승CanvasTree12왕, 반란시스템, 종교신앙CanvasRadar6종, 교통인프라Canvas6종, 왕실재정대시보드Canvas, 도시방어시뮬레이터Canvas8종, 한국사퀴즈160문제, 146업적, 26x26 대형맵.",
+  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 외교사건부Canvas12종, 민심지표CanvasRadar6축, 불가사의Canvas8종, 사계절농업Canvas8작물, 역사시나리오Canvas6종, 도시명성Canvas8등급, 왕실자문단Canvas6인, 교역로Canvas5국, 왕실도서관Canvas12종, 직업시스템CanvasPie8종, 첩보네트워크Canvas6국, 국제교역항CanvasLine8종, 도시미화Canvas환경지수10종, 왕위계승CanvasTree12왕, 반란시스템, 종교신앙CanvasRadar6종, 교통인프라Canvas6종, 왕실재정대시보드Canvas, 도시방어시뮬레이터Canvas8종, 수도시설관리Canvas6종, 전염병대응Canvas8종, 교육체계트래커Canvas8단계, 야간도시경관Canvas, 세금정책시뮬레이터Canvas5종, 인구피라미드Canvas6계층, 문명업적타임라인Canvas12사건, 전쟁캠페인시뮬레이터Canvas6전투, 한국사퀴즈175문제, 158업적, 26x26 대형맵.",
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "any",
@@ -106,6 +106,46 @@
       "name": "종교 신앙",
       "url": "index.html#religion",
       "description": "6종 종교로 주민 신앙을 관리합니다"
+    },
+    {
+      "name": "수도 시설",
+      "url": "index.html#water",
+      "description": "6종 수도 시설로 도시 용수를 관리합니다"
+    },
+    {
+      "name": "전염병 대응",
+      "url": "index.html#epidemic",
+      "description": "8종 전염병에 4가지 대응책을 실행합니다"
+    },
+    {
+      "name": "교육 체계",
+      "url": "index.html#education",
+      "description": "8단계 교육 기관을 발전시킵니다"
+    },
+    {
+      "name": "야간 도시경관",
+      "url": "index.html#nightscape",
+      "description": "야간 도시의 경관을 감상합니다"
+    },
+    {
+      "name": "세금 정책",
+      "url": "index.html#tax",
+      "description": "5종 세금 정책으로 재정을 운영합니다"
+    },
+    {
+      "name": "인구 분석",
+      "url": "index.html#population",
+      "description": "6계층 인구 피라미드를 분석합니다"
+    },
+    {
+      "name": "문명 타임라인",
+      "url": "index.html#timeline",
+      "description": "12대 문명 업적을 타임라인으로 봅니다"
+    },
+    {
+      "name": "전쟁 캠페인",
+      "url": "index.html#warcampaign",
+      "description": "6대 전투를 시뮬레이션합니다"
     }
   ]
 }
