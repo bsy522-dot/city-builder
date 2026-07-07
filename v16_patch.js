@@ -781,6 +781,7 @@ window.v16RecruitUnit = function(key) {
         v16State.militaryUnits[key].count += 10;
         playV16SFX('military_march');
         if(typeof toast === 'function') toast('⚔️ ' + v16State.militaryUnits[key].name + ' 10명 징병!');
+        if(typeof addChronicle === 'function') addChronicle(v16State.militaryUnits[key].icon, v16State.militaryUnits[key].name + ' 10명이 새로 편성되었습니다.');
         saveV16State();
         renderMilitaryOrg();
     } else {
@@ -1112,6 +1113,7 @@ window.v16PoliticalEvent = function() {
     });
     playV16SFX('faction_shift');
     if(typeof toast === 'function') toast('👑 ' + ev.name + ': ' + ev.desc);
+    if(typeof addChronicle === 'function') addChronicle('📯', ev.name + ': ' + ev.desc);
     saveV16State();
     renderFactionMap();
 };
@@ -1405,6 +1407,8 @@ window.v16ChangeSeason = function(idx) {
     v16State.currentSeason = idx;
     trackSeasonVisit();
     playV16SFX('season_change');
+    var se = v16State.seasonEffects[idx];
+    if(typeof addChronicle === 'function' && se) addChronicle(se.icon, se.name + '이(가) 찾아와 도시의 자원 수급이 변화했습니다.');
     saveV16State();
     renderSeasonWeather();
 };
