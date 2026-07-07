@@ -1,7 +1,7 @@
 {
-  "name": "한국사 도시건설 v15.0",
+  "name": "한국사 도시건설 v16.0",
   "short_name": "도시건설",
-  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 외교사건부Canvas12종, 민심지표CanvasRadar6축, 불가사의Canvas8종, 사계절농업Canvas8작물, 역사시나리오Canvas6종, 도시명성Canvas8등급, 왕실자문단Canvas6인, 교역로Canvas5국, 왕실도서관Canvas12종, 직업시스템CanvasPie8종, 첩보네트워크Canvas6국, 국제교역항CanvasLine8종, 도시미화Canvas환경지수10종, 왕위계승CanvasTree12왕, 반란시스템, 종교신앙CanvasRadar6종, 교통인프라Canvas6종, 왕실재정대시보드Canvas, 도시방어시뮬레이터Canvas8종, 수도시설관리Canvas6종, 전염병대응Canvas8종, 교육체계트래커Canvas8단계, 야간도시경관Canvas, 세금정책시뮬레이터Canvas5종, 인구피라미드Canvas6계층, 문명업적타임라인Canvas12사건, 전쟁캠페인시뮬레이터Canvas6전투, 한국사퀴즈175문제, 158업적, 26x26 대형맵.",
+  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 외교사건부Canvas12종, 민심지표CanvasRadar6축, 불가사의Canvas8종, 사계절농업Canvas8작물, 역사시나리오Canvas6종, 도시명성Canvas8등급, 왕실자문단Canvas6인, 교역로Canvas5국, 왕실도서관Canvas12종, 직업시스템CanvasPie8종, 첩보네트워크Canvas6국, 국제교역항CanvasLine8종, 도시미화Canvas환경지수10종, 왕위계승CanvasTree12왕, 반란시스템, 종교신앙CanvasRadar6종, 교통인프라Canvas6종, 왕실재정대시보드Canvas, 도시방어시뮬레이터Canvas8종, 수도시설관리Canvas6종, 전염병대응Canvas8종, 교육체계트래커Canvas8단계, 야간도시경관Canvas, 세금정책시뮬레이터Canvas5종, 인구피라미드Canvas6계층, 문명업적타임라인Canvas12사건, 전쟁캠페인시뮬레이터Canvas6전투, 물산교역시장Canvas8종, 자연재해방비6축RadarCanvas, 문화유산등록부Canvas12종, 군사편제도Canvas8병종, 계절날씨영향도Canvas, 백성만족도조사Canvas6분야, 궁중세력도CanvasPie6세력, 역사강역지도Canvas5시대, 한국사퀴즈190문제, 170업적, 26x26 대형맵.",
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "any",
@@ -146,6 +146,46 @@
       "name": "전쟁 캠페인",
       "url": "index.html#warcampaign",
       "description": "6대 전투를 시뮬레이션합니다"
+    },
+    {
+      "name": "물산 교역시장",
+      "url": "index.html#trade",
+      "description": "8종 물산을 수급에 맞춰 교역합니다"
+    },
+    {
+      "name": "자연재해 방비",
+      "url": "index.html#disaster",
+      "description": "6축 재해 대비 시스템을 관리합니다"
+    },
+    {
+      "name": "문화유산 등록부",
+      "url": "index.html#heritage",
+      "description": "12종 문화유산을 등록하고 보존합니다"
+    },
+    {
+      "name": "군사 편제도",
+      "url": "index.html#military",
+      "description": "8병종 군사 편제를 조직합니다"
+    },
+    {
+      "name": "계절 날씨영향",
+      "url": "index.html#season",
+      "description": "사계절 날씨가 도시에 미치는 영향을 봅니다"
+    },
+    {
+      "name": "백성 만족도조사",
+      "url": "index.html#survey",
+      "description": "6분야 백성 만족도를 조사합니다"
+    },
+    {
+      "name": "궁중 세력도",
+      "url": "index.html#faction",
+      "description": "6대 궁중 세력의 역학을 분석합니다"
+    },
+    {
+      "name": "역사 강역지도",
+      "url": "index.html#territory",
+      "description": "5시대 역사 강역을 지도에서 비교합니다"
     }
   ]
 }
