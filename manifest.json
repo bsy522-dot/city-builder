@@ -1,7 +1,7 @@
 {
-  "name": "한국사 도시건설 v16.0",
+  "name": "한국사 도시건설 v17.0",
   "short_name": "도시건설",
-  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 외교사건부Canvas12종, 민심지표CanvasRadar6축, 불가사의Canvas8종, 사계절농업Canvas8작물, 역사시나리오Canvas6종, 도시명성Canvas8등급, 왕실자문단Canvas6인, 교역로Canvas5국, 왕실도서관Canvas12종, 직업시스템CanvasPie8종, 첩보네트워크Canvas6국, 국제교역항CanvasLine8종, 도시미화Canvas환경지수10종, 왕위계승CanvasTree12왕, 반란시스템, 종교신앙CanvasRadar6종, 교통인프라Canvas6종, 왕실재정대시보드Canvas, 도시방어시뮬레이터Canvas8종, 수도시설관리Canvas6종, 전염병대응Canvas8종, 교육체계트래커Canvas8단계, 야간도시경관Canvas, 세금정책시뮬레이터Canvas5종, 인구피라미드Canvas6계층, 문명업적타임라인Canvas12사건, 전쟁캠페인시뮬레이터Canvas6전투, 물산교역시장Canvas8종, 자연재해방비6축RadarCanvas, 문화유산등록부Canvas12종, 군사편제도Canvas8병종, 계절날씨영향도Canvas, 백성만족도조사Canvas6분야, 궁중세력도CanvasPie6세력, 역사강역지도Canvas5시대, 한국사퀴즈190문제, 170업적, 26x26 대형맵.",
+  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 왕실혼인외교관Canvas8가문, 고대과학기술원Canvas12종, 민란봉기관리소Canvas8종, 왕실보물창고Canvas10종, 계층사회시뮬Canvas6계층, 풍수지리감정관8방위RadarCanvas, 왕실연회관Canvas10종, 역대왕릉지도Canvas12릉, 외교사건부Canvas12종, 민심지표CanvasRadar6축, 불가사의Canvas8종, 사계절농업Canvas8작물, 역사시나리오Canvas6종, 도시명성Canvas8등급, 왕실자문단Canvas6인, 교역로Canvas5국, 왕실도서관Canvas12종, 직업시스템CanvasPie8종, 첩보네트워크Canvas6국, 국제교역항CanvasLine8종, 도시미화Canvas환경지수10종, 왕위계승CanvasTree12왕, 반란시스템, 종교신앙CanvasRadar6종, 교통인프라Canvas6종, 왕실재정대시보드Canvas, 도시방어시뮬레이터Canvas8종, 수도시설관리Canvas6종, 전염병대응Canvas8종, 교육체계트래커Canvas8단계, 야간도시경관Canvas, 세금정책시뮬레이터Canvas5종, 인구피라미드Canvas6계층, 문명업적타임라인Canvas12사건, 전쟁캠페인시뮬레이터Canvas6전투, 물산교역시장Canvas8종, 자연재해방비6축RadarCanvas, 문화유산등록부Canvas12종, 군사편제도Canvas8병종, 계절날씨영향도Canvas, 백성만족도조사Canvas6분야, 궁중세력도CanvasPie6세력, 역사강역지도Canvas5시대, 한국사퀴즈205문제, 182업적, 26x26 대형맵.",
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "any",
@@ -186,6 +186,46 @@
       "name": "역사 강역지도",
       "url": "index.html#territory",
       "description": "5시대 역사 강역을 지도에서 비교합니다"
+    },
+    {
+      "name": "왕실 혼인외교",
+      "url": "index.html#marriage",
+      "description": "8가문 왕실 혼인으로 동맹을 맺습니다"
+    },
+    {
+      "name": "고대 과학기술",
+      "url": "index.html#science",
+      "description": "12종 고대 과학기술을 연구합니다"
+    },
+    {
+      "name": "민란 봉기관리",
+      "url": "index.html#rebellion",
+      "description": "8종 역사 민란에 대응합니다"
+    },
+    {
+      "name": "왕실 보물창고",
+      "url": "index.html#treasure",
+      "description": "10종 국보급 보물을 수집합니다"
+    },
+    {
+      "name": "계층 사회시뮬",
+      "url": "index.html#socialclass",
+      "description": "6계층 사회구조를 시뮬레이션합니다"
+    },
+    {
+      "name": "풍수지리 감정",
+      "url": "index.html#fengshui",
+      "description": "8방위 풍수지리를 감정하고 최적화합니다"
+    },
+    {
+      "name": "왕실 연회관",
+      "url": "index.html#banquet",
+      "description": "10종 연회를 개최하여 사기를 높입니다"
+    },
+    {
+      "name": "역대 왕릉지도",
+      "url": "index.html#royaltombs",
+      "description": "12릉 역대 왕릉을 탐사합니다"
     }
   ]
 }

@@ -1374,3 +1374,60 @@ Citizen Happiness(5지표), Campaign(8종), SFX 6종, Keyboard Shortcuts +5
 - `manifest.json` (v15→v16, 8 shortcuts 추가, 총 34개)
 
 ---
+
+## v17.0 — 2026-07-10
+
+### Stage 1: Benchmarking (10%)
+| 비교 항목 | SimCity (EA) | TheoTown | Civilization VI | city-builder v16 | v17 목표 |
+|-----------|-------------|----------|----------------|-------------------|----------|
+| 왕실 혼인/동맹 | ❌ | ❌ | ✅ 외교동맹 | ❌ | ✅ 8가문 혼인네트워크 |
+| 과학 기술트리 | ❌ | ✅ 기본연구 | ✅ 테크트리 | ❌ | ✅ 12종 고대과학 |
+| 반란/민란 이벤트 | ❌ | ❌ | ✅ 반란 | ❌ | ✅ 8종 역사민란 |
+| 국보/보물 수집 | ❌ | ❌ | ✅ 유물 | ❌ | ✅ 10종 국보보물 |
+| 계층/신분제도 | ❌ | ❌ | ✅ 정부형태 | ❌ | ✅ 6계층 사회시뮬 |
+| 풍수지리/도시배치 | ❌ | ❌ | ❌ | ❌ | ✅ 8방위 풍수Radar |
+| 연회/축제 시스템 | ❌ | ❌ | ✅ 축제 | ❌ | ✅ 10종 왕실연회 |
+| 왕릉/역사유적맵 | ❌ | ❌ | ❌ | ❌ | ✅ 12릉 왕릉탐사 |
+
+### Stage 2: Development (50%)
+**신규 v17_patch.js** (1,057줄, IIFE 패치 모듈)
+
+#### 8대 신규 기능:
+1. **왕실혼인외교관** (Canvas 580×380): 8가문 네트워크 그래프, 동맹 토글, 왕족 이름+문양, 동맹선 시각화
+2. **고대과학기술원** (Canvas 560×360): 12종 기술 연구 트리, 비용/턴 표시, 잠금해제 시스템
+3. **민란봉기관리소** (Canvas 600×380): 8종 역사적 민란, 진압/협상/수용 3종 대응, 위험도 바
+4. **왕실보물창고** (Canvas 560×340): 10종 국보급 보물 컬렉션, 발견/미발견 상태, 능력치 보너스
+5. **계층사회시뮬** (Canvas 580×360): 6계층 스택바 그래프, 6종 정책으로 인구비율 조정
+6. **풍수지리감정관** (Canvas 560×380): 8방위 Radar 차트, 분석/최적화 기능, 길흉 판정
+7. **왕실연회관** (Canvas 580×340): 10종 연회 타입, 사기/외교 보너스, 비용 시스템
+8. **역대왕릉지도** (Canvas 600×400): 12릉 맵 시각화, 탐사 시스템, 유물 발견 이벤트
+
+**퀴즈**: +15문제 (190→205)
+**업적**: +12개 (170→182)
+**SFX**: 12종 추가 (marriage_bell, science_discover, rebellion_alarm, rebellion_calm, treasure_find, treasure_display, class_reform, fengshui_analyze, banquet_toast, tomb_discover, achieve_v17, nav_v17)
+**키보드 단축키**: 8종 추가 (Shift+Z/X/C/V/B/N/M/Comma)
+**하단 네비게이션 바**: 8버튼 (혼인/과학/민란/보물/계층/풍수/연회/왕릉)
+
+### Stage 3: Quality Verification (30%)
+| 검증 항목 | 결과 |
+|-----------|------|
+| JS 문법 검사 (node -c) | PASS |
+| 괄호 균형 검사 | PASS — () 720/720, {} 299/299, [] 113/113 |
+| 외부 CDN 참조 | 0건 (PASS) |
+| 개인정보 노출 | 0건 (PASS) |
+| UI불가침 위반 (fixed bottom:0 nav) | 0건 (PASS) — bottom:218px/180px 사용 |
+| manifest.json 유효성 | PASS |
+| sw.js 문법 검사 | PASS |
+| v17_patch.js 총 라인 | 1,057줄 |
+| Canvas 렌더링 함수 | 9종 (PASS) |
+| SFX switch case 수 | 20종 (PASS — 기존 포함) |
+| localStorage 키 충돌 | 0건 (PASS) — cb_v17_state 고유 키 |
+
+### Stage 4: Finalization (10%)
+**수정 파일 4종**:
+- `v17_patch.js` (신규, 1,057줄)
+- `index.html` (SEO v16→v17, script 태그 추가)
+- `sw.js` (캐시 v16→v17, v17_patch.js 추가)
+- `manifest.json` (v16→v17, 8 shortcuts 추가, 총 42개)
+
+---
