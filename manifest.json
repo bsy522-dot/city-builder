@@ -1,7 +1,7 @@
 {
-  "name": "한국사 도시건설 v17.0",
+  "name": "한국사 도시건설 v18.0",
   "short_name": "도시건설",
-  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 왕실혼인외교관Canvas8가문, 고대과학기술원Canvas12종, 민란봉기관리소Canvas8종, 왕실보물창고Canvas10종, 계층사회시뮬Canvas6계층, 풍수지리감정관8방위RadarCanvas, 왕실연회관Canvas10종, 역대왕릉지도Canvas12릉, 외교사건부Canvas12종, 민심지표CanvasRadar6축, 불가사의Canvas8종, 사계절농업Canvas8작물, 역사시나리오Canvas6종, 도시명성Canvas8등급, 왕실자문단Canvas6인, 교역로Canvas5국, 왕실도서관Canvas12종, 직업시스템CanvasPie8종, 첩보네트워크Canvas6국, 국제교역항CanvasLine8종, 도시미화Canvas환경지수10종, 왕위계승CanvasTree12왕, 반란시스템, 종교신앙CanvasRadar6종, 교통인프라Canvas6종, 왕실재정대시보드Canvas, 도시방어시뮬레이터Canvas8종, 수도시설관리Canvas6종, 전염병대응Canvas8종, 교육체계트래커Canvas8단계, 야간도시경관Canvas, 세금정책시뮬레이터Canvas5종, 인구피라미드Canvas6계층, 문명업적타임라인Canvas12사건, 전쟁캠페인시뮬레이터Canvas6전투, 물산교역시장Canvas8종, 자연재해방비6축RadarCanvas, 문화유산등록부Canvas12종, 군사편제도Canvas8병종, 계절날씨영향도Canvas, 백성만족도조사Canvas6분야, 궁중세력도CanvasPie6세력, 역사강역지도Canvas5시대, 한국사퀴즈205문제, 182업적, 26x26 대형맵.",
+  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 왕실혼인외교관Canvas8가문, 고대과학기술원Canvas12종, 민란봉기관리소Canvas8종, 왕실보물창고Canvas10종, 계층사회시뮬Canvas6계층, 풍수지리감정관8방위RadarCanvas, 왕실연회관Canvas10종, 역대왕릉지도Canvas12릉, 외교사건부Canvas12종, 민심지표CanvasRadar6축, 불가사의Canvas8종, 사계절농업Canvas8작물, 역사시나리오Canvas6종, 도시명성Canvas8등급, 왕실자문단Canvas6인, 교역로Canvas5국, 왕실도서관Canvas12종, 직업시스템CanvasPie8종, 첩보네트워크Canvas6국, 국제교역항CanvasLine8종, 도시미화Canvas환경지수10종, 왕위계승CanvasTree12왕, 반란시스템, 종교신앙CanvasRadar6종, 교통인프라Canvas6종, 왕실재정대시보드Canvas, 도시방어시뮬레이터Canvas8종, 수도시설관리Canvas6종, 전염병대응Canvas8종, 교육체계트래커Canvas8단계, 야간도시경관Canvas, 세금정책시뮬레이터Canvas5종, 인구피라미드Canvas6계층, 문명업적타임라인Canvas12사건, 전쟁캠페인시뮬레이터Canvas6전투, 물산교역시장Canvas8종, 자연재해방비6축RadarCanvas, 문화유산등록부Canvas12종, 군사편제도Canvas8병종, 계절날씨영향도Canvas, 백성만족도조사Canvas6분야, 궁중세력도CanvasPie6세력, 역사강역지도Canvas5시대, 궁중음악공연관Canvas12악기, 역사인물관계도Canvas10인물, 도시환경관리청6축RadarCanvas, 왕실의학원Canvas8치료법, 고대천문관측소Canvas12성좌, 도시교통망Canvas8노선, 왕실도예공방Canvas10도자기, 역사법전편찬소Canvas12법률, 한국사퀴즈220문제, 194업적, 26x26 대형맵.",
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "any",
@@ -226,6 +226,46 @@
       "name": "역대 왕릉지도",
       "url": "index.html#royaltombs",
       "description": "12릉 역대 왕릉을 탐사합니다"
+    },
+    {
+      "name": "궁중음악공연관",
+      "url": "index.html#music",
+      "description": "12종 전통 악기를 연주합니다"
+    },
+    {
+      "name": "역사인물관계도",
+      "url": "index.html#figures",
+      "description": "10대 인물 관계 네트워크를 탐색합니다"
+    },
+    {
+      "name": "도시환경관리청",
+      "url": "index.html#env",
+      "description": "6종 환경 지표를 관리합니다"
+    },
+    {
+      "name": "왕실의학원",
+      "url": "index.html#medical",
+      "description": "8종 전통 한의학 치료를 체험합니다"
+    },
+    {
+      "name": "고대천문관측소",
+      "url": "index.html#astro",
+      "description": "12성좌를 관측합니다"
+    },
+    {
+      "name": "도시교통망",
+      "url": "index.html#transport",
+      "description": "8종 교통로를 건설합니다"
+    },
+    {
+      "name": "왕실도예공방",
+      "url": "index.html#pottery",
+      "description": "10종 한국 도자기를 제작합니다"
+    },
+    {
+      "name": "역사법전편찬소",
+      "url": "index.html#law",
+      "description": "12대 법률을 제정합니다"
     }
   ]
 }
