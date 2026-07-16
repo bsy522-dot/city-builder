@@ -1,7 +1,7 @@
 {
-  "name": "한국사 도시건설 v18.0",
+  "name": "한국사 도시건설 v19.0",
   "short_name": "도시건설",
-  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 왕실혼인외교관Canvas8가문, 고대과학기술원Canvas12종, 민란봉기관리소Canvas8종, 왕실보물창고Canvas10종, 계층사회시뮬Canvas6계층, 풍수지리감정관8방위RadarCanvas, 왕실연회관Canvas10종, 역대왕릉지도Canvas12릉, 외교사건부Canvas12종, 민심지표CanvasRadar6축, 불가사의Canvas8종, 사계절농업Canvas8작물, 역사시나리오Canvas6종, 도시명성Canvas8등급, 왕실자문단Canvas6인, 교역로Canvas5국, 왕실도서관Canvas12종, 직업시스템CanvasPie8종, 첩보네트워크Canvas6국, 국제교역항CanvasLine8종, 도시미화Canvas환경지수10종, 왕위계승CanvasTree12왕, 반란시스템, 종교신앙CanvasRadar6종, 교통인프라Canvas6종, 왕실재정대시보드Canvas, 도시방어시뮬레이터Canvas8종, 수도시설관리Canvas6종, 전염병대응Canvas8종, 교육체계트래커Canvas8단계, 야간도시경관Canvas, 세금정책시뮬레이터Canvas5종, 인구피라미드Canvas6계층, 문명업적타임라인Canvas12사건, 전쟁캠페인시뮬레이터Canvas6전투, 물산교역시장Canvas8종, 자연재해방비6축RadarCanvas, 문화유산등록부Canvas12종, 군사편제도Canvas8병종, 계절날씨영향도Canvas, 백성만족도조사Canvas6분야, 궁중세력도CanvasPie6세력, 역사강역지도Canvas5시대, 궁중음악공연관Canvas12악기, 역사인물관계도Canvas10인물, 도시환경관리청6축RadarCanvas, 왕실의학원Canvas8치료법, 고대천문관측소Canvas12성좌, 도시교통망Canvas8노선, 왕실도예공방Canvas10도자기, 역사법전편찬소Canvas12법률, 한국사퀴즈220문제, 194업적, 26x26 대형맵.",
+  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 왕실조폐국Canvas10종화폐, 고대수리시설Canvas8종, 왕실기록보관소Canvas12문헌, 도시성곽방어도Canvas8종6축Radar, 전통시장경제Canvas10종수요공급, 왕실외교사절관Canvas8국6축Radar, 고대야금제련소Canvas10금속, 역사인구조사국Canvas6시대인구피라미드, 왕실혼인외교관Canvas8가문, 고대과학기술원Canvas12종, 민란봉기관리소Canvas8종, 왕실보물창고Canvas10종, 계층사회시뮬Canvas6계층, 풍수지리감정관8방위RadarCanvas, 왕실연회관Canvas10종, 역대왕릉지도Canvas12릉, 외교사건부Canvas12종, 민심지표CanvasRadar6축, 불가사의Canvas8종, 사계절농업Canvas8작물, 역사시나리오Canvas6종, 도시명성Canvas8등급, 왕실자문단Canvas6인, 교역로Canvas5국, 왕실도서관Canvas12종, 직업시스템CanvasPie8종, 첩보네트워크Canvas6국, 국제교역항CanvasLine8종, 도시미화Canvas환경지수10종, 왕위계승CanvasTree12왕, 반란시스템, 종교신앙CanvasRadar6종, 교통인프라Canvas6종, 왕실재정대시보드Canvas, 도시방어시뮬레이터Canvas8종, 수도시설관리Canvas6종, 전염병대응Canvas8종, 교육체계트래커Canvas8단계, 야간도시경관Canvas, 세금정책시뮬레이터Canvas5종, 인구피라미드Canvas6계층, 문명업적타임라인Canvas12사건, 전쟁캠페인시뮬레이터Canvas6전투, 물산교역시장Canvas8종, 자연재해방비6축RadarCanvas, 문화유산등록부Canvas12종, 군사편제도Canvas8병종, 계절날씨영향도Canvas, 백성만족도조사Canvas6분야, 궁중세력도CanvasPie6세력, 역사강역지도Canvas5시대, 궁중음악공연관Canvas12악기, 역사인물관계도Canvas10인물, 도시환경관리청6축RadarCanvas, 왕실의학원Canvas8치료법, 고대천문관측소Canvas12성좌, 도시교통망Canvas8노선, 왕실도예공방Canvas10도자기, 역사법전편찬소Canvas12법률, 한국사퀴즈235문제, 206업적, 26x26 대형맵.",
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "any",
@@ -266,6 +266,46 @@
       "name": "역사법전편찬소",
       "url": "index.html#law",
       "description": "12대 법률을 제정합니다"
+    },
+    {
+      "name": "왕실조폐국",
+      "url": "index.html#mint",
+      "description": "10종 역대 화폐를 주조합니다"
+    },
+    {
+      "name": "고대수리시설",
+      "url": "index.html#irrigation",
+      "description": "8종 수리 시설로 농업 생산력을 높입니다"
+    },
+    {
+      "name": "왕실기록보관소",
+      "url": "index.html#archive",
+      "description": "12종 역사 기록물을 보관합니다"
+    },
+    {
+      "name": "도시성곽방어도",
+      "url": "index.html#fortress",
+      "description": "8종 성곽으로 6축 방어 체계를 구축합니다"
+    },
+    {
+      "name": "전통시장경제",
+      "url": "index.html#market",
+      "description": "10종 물품의 수요공급을 관리합니다"
+    },
+    {
+      "name": "왕실외교사절관",
+      "url": "index.html#embassy",
+      "description": "8국 외교 사절을 파견합니다"
+    },
+    {
+      "name": "고대야금제련소",
+      "url": "index.html#metallurgy",
+      "description": "10종 금속을 제련합니다"
+    },
+    {
+      "name": "역사인구조사국",
+      "url": "index.html#census",
+      "description": "6시대 인구 구조를 분석합니다"
     }
   ]
 }
