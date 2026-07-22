@@ -1,5 +1,5 @@
-const CACHE_NAME = 'city-builder-v20';
-const ASSETS = ['index.html', 'v6_patch.js', 'v7_patch.js', 'v8_patch.js', 'v9_patch.js', 'v10_patch.js', 'v11_patch.js', 'v12_patch.js', 'v13_patch.js', 'v14_patch.js', 'v15_patch.js', 'v16_patch.js', 'v17_patch.js', 'v18_patch.js', 'v19_patch.js', 'v20_patch.js', 'manifest.json'];
+const CACHE_NAME = 'city-builder-v21';
+const ASSETS = ['index.html', 'v6_patch.js', 'v7_patch.js', 'v8_patch.js', 'v9_patch.js', 'v10_patch.js', 'v11_patch.js', 'v12_patch.js', 'v13_patch.js', 'v14_patch.js', 'v15_patch.js', 'v16_patch.js', 'v17_patch.js', 'v18_patch.js', 'v19_patch.js', 'v20_patch.js', 'v21_patch.js', 'manifest.json'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(ASSETS)));
