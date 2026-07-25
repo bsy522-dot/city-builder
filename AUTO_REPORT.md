@@ -1618,3 +1618,54 @@ Citizen Happiness(5지표), Campaign(8종), SFX 6종, Keyboard Shortcuts +5
 - `AUTO_REPORT.md` (v19 보고서 추가)
 
 ---
+
+## v22.0 — 2026-07-25
+
+### 벤치마킹: SimCity / TheoTown 비교 분석
+
+| 열위점 | SimCity/TheoTown | city-builder v21 | v22 해결 |
+|--------|-----------------|-------------------|----------|
+| 교육 시스템 | 학교/대학/도서관 상세 관리 | 미구현 | 도시교육시스템관리기 8기관 Canvas |
+| 시대별 연대기 | 문명은 시대 추적 상세 | 간단 타임라인만 | 왕실연대기편찬소 6왕조 타임라인 Canvas |
+| 물류/화물 | 화물역/창고/물류허브 | 단순 교역만 | 도시물류허브관리기 8물자 Sankey Canvas |
+| 재해 기록 | 재해 이력/피해 추적 | 실시간만 | 왕실천재지변기록관 6재해 아카이브 Canvas |
+| 인프라 노후 | 건물 노후/보수 시스템 | 미구현 | 인프라노후도분석기 8시설 원형게이지 Canvas |
+| 여론/지지율 | 시장 지지율 상세 추적 | 단순 민심 수치 | 민심여론조사시뮬레이터 6계층 폴라차트 Canvas |
+| 외교 | 문명은 외교 상세 시스템 | 단순 외교 | 왕실외교전략시뮬레이터 8국 네트워크 Canvas |
+| 문화 다양성 | 인구 구성 추적 | 미구현 | 도시문화다양성지수 8분야 스택바 Canvas |
+
+### 신규 기능 (8개 Canvas)
+
+1. **도시 교육 시스템 관리기** (Canvas 620x400): 서당/향교/성균관/사학/무학/의학/율학/역학 8교육기관 수평바차트 + 학력추이 라인 + 과거제도 합격률
+2. **왕실 연대기 편찬소** (Canvas 640x380): 고조선/삼국/통일신라/고려/조선/근대 6왕조 타임라인 이벤트 노드 + 편찬 진행률
+3. **도시 물류 허브 관리기** (Canvas 620x400): 곡물/철/비단/목재/약재/도자기/금/소금 8물자 Sankey-style 공급/수요/수송 흐름도
+4. **왕실 천재지변 기록관** (Canvas 620x380): 지진/홍수/가뭄/태풍/역병/화재 6재해 피해 바차트 + 대비도 게이지 + 이력 기록
+5. **도시 인프라 노후도 분석기** (Canvas 620x400): 성벽/도로/수로/교량/관아/시장/창고/사찰 8시설 원형 노후 게이지 (2×4 그리드) + 보수 상태
+6. **민심 여론조사 시뮬레이터** (Canvas 600x380): 양반/중인/상인/농민/천민/승려 6계층 폴라/레이더 차트 + 지지율 수평바
+7. **왕실 외교 전략 시뮬레이터** (Canvas 640x400): 중국/일본/몽골/여진/거란/돌궐/류큐/동남아 8국 관계 네트워크 그래프 + 전략 매트릭스
+8. **도시 문화 다양성 지수** (Canvas 620x380): 음악/미술/문학/건축/공예/무용/학문/종교 8분야 스택바 (자국/외래/융합) + 다양성 스코어
+
+### 퀴즈/업적/SFX
+
+- **퀴즈 +15문** (265→280): 과거제도, 서당교육, 성균관, 역사연대기, 물류, 천재지변, 인프라, 여론, 외교, 문화다양성
+- **업적 +12종** (230→242): edu_starter, edu_master, chronicle_historian, logistics_expert, disaster_archivist, infra_engineer, poll_conductor, diplo_ambassador, culture_collector, quiz_v22_master, v22_explorer, v22_complete
+- **SFX 16종**: edu_enroll, edu_graduate, chronicle_write, chronicle_compile, logistics_ship, logistics_arrive, disaster_strike, disaster_record, infra_inspect, infra_repair, poll_conduct, poll_result, diplo_send, diplo_treaty, culture_discover, achieve_v22
+- **키보드**: Shift+Q (패널 열기), Shift+1~8 (섹션 전환)
+
+### 품질 검증
+
+- **JS 구문검사**: PASS (node -c, 1382줄)
+- **JSON 검증**: PASS (manifest.json)
+- **CDN 사용**: 0건
+- **개인정보 노출**: 0건
+- **하단 고정 네비바**: 0건 (UI불가침 규칙 준수)
+
+### 수정 파일
+
+- `v22_patch.js` (신규, 1382줄)
+- `index.html` (SEO v22.0 갱신, v22 스크립트태그 추가)
+- `sw.js` (캐시 v21→v22, v22_patch.js 추가)
+- `manifest.json` (v22.0 설명, 8 shortcuts 추가)
+- `AUTO_REPORT.md` (v22 보고서 추가)
+
+---

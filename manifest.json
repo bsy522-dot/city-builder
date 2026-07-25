@@ -1,7 +1,7 @@
 {
-  "name": "한국사 도시건설 v21.0",
+  "name": "한국사 도시건설 v22.0",
   "short_name": "도시건설",
-  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 도시범죄율분석기Canvas8구역히트맵치안배치, 왕실세금정책시뮬레이터Canvas6종세율듀얼라인, 도시성장타임라인Canvas6시대3축라인차트, 전염병확산시뮬레이터Canvas8x8SIR모델방역, 도시토지이용계획도Canvas8종도넛존닝, 왕실군사배치도Canvas8병종6축Radar, 고대무역로네트워크Canvas8도시교역그래프, 도시발전성적표Canvas8카테고리반원게이지, 한국사퀴즈265문제, 230업적, 26x26 대형맵.",
+  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 도시교육시스템관리기Canvas8교육기관학력차트과거제도, 왕실연대기편찬소Canvas6왕조사건타임라인, 도시물류허브관리기Canvas8물자공급망산키, 왕실천재지변기록관Canvas6재해피해분석바차트, 도시인프라노후도분석기Canvas8시설노후게이지보수계획, 민심여론조사시뮬레이터Canvas6계층폴라차트지지율, 왕실외교전략시뮬레이터Canvas8국관계망외교매트릭스, 도시문화다양성지수Canvas8문화스택바다양성스코어, 한국사퀴즈280문제, 242업적, 26x26 대형맵.",
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "any",
@@ -386,6 +386,46 @@
       "name": "도시발전성적표",
       "url": "index.html#grade",
       "description": "8카테고리 도시 발전을 평가합니다"
+    },
+    {
+      "name": "도시교육시스템",
+      "url": "index.html#education-v22",
+      "description": "8교육기관 학력차트와 과거제도를 관리합니다"
+    },
+    {
+      "name": "왕실연대기편찬",
+      "url": "index.html#chronicle",
+      "description": "6왕조 사건 타임라인을 편찬합니다"
+    },
+    {
+      "name": "도시물류허브",
+      "url": "index.html#logistics",
+      "description": "8물자 공급망을 관리합니다"
+    },
+    {
+      "name": "천재지변기록관",
+      "url": "index.html#disaster-v22",
+      "description": "6종 재해 기록과 피해를 분석합니다"
+    },
+    {
+      "name": "인프라노후도분석",
+      "url": "index.html#infra-aging",
+      "description": "8시설 노후도를 점검하고 보수합니다"
+    },
+    {
+      "name": "민심여론조사",
+      "url": "index.html#poll",
+      "description": "6계층 여론을 조사하고 지지율을 분석합니다"
+    },
+    {
+      "name": "왕실외교전략",
+      "url": "index.html#diplomacy-v22",
+      "description": "8국 외교 관계망과 전략을 시뮬레이션합니다"
+    },
+    {
+      "name": "문화다양성지수",
+      "url": "index.html#culture-diversity",
+      "description": "8분야 문화 다양성 지수를 측정합니다"
     }
   ]
 }
