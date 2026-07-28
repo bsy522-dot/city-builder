@@ -1,7 +1,7 @@
 {
-  "name": "한국사 도시건설 v22.0",
+  "name": "한국사 도시건설 v23.0",
   "short_name": "도시건설",
-  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 도시교육시스템관리기Canvas8교육기관학력차트과거제도, 왕실연대기편찬소Canvas6왕조사건타임라인, 도시물류허브관리기Canvas8물자공급망산키, 왕실천재지변기록관Canvas6재해피해분석바차트, 도시인프라노후도분석기Canvas8시설노후게이지보수계획, 민심여론조사시뮬레이터Canvas6계층폴라차트지지율, 왕실외교전략시뮬레이터Canvas8국관계망외교매트릭스, 도시문화다양성지수Canvas8문화스택바다양성스코어, 한국사퀴즈280문제, 242업적, 26x26 대형맵.",
+  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 왕실과거시험시뮬레이터Canvas8시험합격률바차트, 도시수로관개관리기Canvas8수로네트워크, 고대농업계절플래너Canvas8작물12월히트맵, 도시화재방비시뮬레이터Canvas8x8위험도히트맵소방배치, 왕실축제이벤트플래너Canvas10축제5축Radar, 도시수공업길드관리기Canvas10길드6축Radar종합순위, 고대통신봉수네트워크Canvas8봉수대네트워크, 도시민생복지대시보드Canvas8지표반원게이지, 한국사퀴즈295문제, 254업적, 26x26 대형맵.",
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "any",
@@ -426,6 +426,46 @@
       "name": "문화다양성지수",
       "url": "index.html#culture-diversity",
       "description": "8분야 문화 다양성 지수를 측정합니다"
+    },
+    {
+      "name": "과거시험시뮬레이터",
+      "url": "index.html#exam-system-v23",
+      "description": "8종 과거시험 합격률과 인재 확보를 시뮬레이션합니다"
+    },
+    {
+      "name": "수로관개관리기",
+      "url": "index.html#irrigation-v23",
+      "description": "8개 수로 네트워크 유량과 커버리지를 관리합니다"
+    },
+    {
+      "name": "농업계절플래너",
+      "url": "index.html#farm-planner-v23",
+      "description": "8작물 12월 재배 히트맵과 수확량을 분석합니다"
+    },
+    {
+      "name": "화재방비시뮬레이터",
+      "url": "index.html#fire-prevention-v23",
+      "description": "8x8 화재 위험도 히트맵과 소방 배치를 관리합니다"
+    },
+    {
+      "name": "축제이벤트플래너",
+      "url": "index.html#festival-v23",
+      "description": "10대 축제 인기도와 사기 영향을 분석합니다"
+    },
+    {
+      "name": "수공업길드관리기",
+      "url": "index.html#guild-v23",
+      "description": "10개 수공업 길드 6축 레이더와 순위를 관리합니다"
+    },
+    {
+      "name": "봉수네트워크",
+      "url": "index.html#beacon-v23",
+      "description": "8개 봉수대 통신 네트워크를 분석합니다"
+    },
+    {
+      "name": "민생복지대시보드",
+      "url": "index.html#welfare-v23",
+      "description": "8개 민생 복지 지표 반원 게이지를 확인합니다"
     }
   ]
 }
