@@ -1,7 +1,7 @@
 {
-  "name": "한국사 도시건설 v23.0",
+  "name": "한국사 도시건설 v24.0",
   "short_name": "도시건설",
-  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 왕실과거시험시뮬레이터Canvas8시험합격률바차트, 도시수로관개관리기Canvas8수로네트워크, 고대농업계절플래너Canvas8작물12월히트맵, 도시화재방비시뮬레이터Canvas8x8위험도히트맵소방배치, 왕실축제이벤트플래너Canvas10축제5축Radar, 도시수공업길드관리기Canvas10길드6축Radar종합순위, 고대통신봉수네트워크Canvas8봉수대네트워크, 도시민생복지대시보드Canvas8지표반원게이지, 한국사퀴즈295문제, 254업적, 26x26 대형맵.",
+  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 왕실외교동맹분석기Canvas8국네트워크국력관계등급, 도시인구이동추적기Canvas6지역유입유출성장률밀도, 고대산업생산성지표Canvas10산업6축Radar효율성등급, 도시행복지수대시보드Canvas8요소반원게이지가중종합등급, 왕실계보가계도Canvas10왕트리왕권강도계승선, 도시계절경제순환Canvas5지표12월라인차트계절영역, 고대건축양식비교기Canvas8양식5축스택바시대별, 도시종합발전보고서Canvas8분야현재목표전기비교등급, 한국사퀴즈310문제, 266업적, 26x26 대형맵.",
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "any",
@@ -466,6 +466,46 @@
       "name": "민생복지대시보드",
       "url": "index.html#welfare-v23",
       "description": "8개 민생 복지 지표 반원 게이지를 확인합니다"
+    },
+    {
+      "name": "외교동맹분석기",
+      "url": "index.html#diplomacy-v24",
+      "description": "8국 외교 동맹 관계 네트워크를 분석합니다"
+    },
+    {
+      "name": "인구이동추적기",
+      "url": "index.html#migration-v24",
+      "description": "6지역 인구 유입유출 성장률을 추적합니다"
+    },
+    {
+      "name": "산업생산성지표",
+      "url": "index.html#industry-v24",
+      "description": "10산업 6축 레이더 생산성을 분석합니다"
+    },
+    {
+      "name": "행복지수대시보드",
+      "url": "index.html#happiness-v24",
+      "description": "8요소 반원 게이지로 행복 지수를 확인합니다"
+    },
+    {
+      "name": "왕실계보가계도",
+      "url": "index.html#genealogy-v24",
+      "description": "10왕 계보 트리와 왕권 강도를 확인합니다"
+    },
+    {
+      "name": "계절경제순환",
+      "url": "index.html#economy-v24",
+      "description": "5지표 12월 계절 경제 순환을 분석합니다"
+    },
+    {
+      "name": "건축양식비교기",
+      "url": "index.html#architecture-v24",
+      "description": "8종 건축 양식을 5축으로 비교합니다"
+    },
+    {
+      "name": "종합발전보고서",
+      "url": "index.html#report-v24",
+      "description": "8분야 도시 종합 발전 보고서를 확인합니다"
     }
   ]
 }
