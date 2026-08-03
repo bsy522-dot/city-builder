@@ -1778,3 +1778,57 @@ Citizen Happiness(5지표), Campaign(8종), SFX 6종, Keyboard Shortcuts +5
 - `AUTO_REPORT.md` (v22 보고서 추가)
 
 ---
+
+## v25.0 — 2026-08-03
+
+### 1단계: 벤치마킹 — SimCity / TheoTown 비교 분석
+
+| 열위점 | SimCity/TheoTown | city-builder v24 | v25 해결 |
+|--------|-----------------|-------------------|----------|
+| 세금 최적화 | 세부 세원별 세율 조정+영향분석 | 단순 세금정책만 | 왕실세금정책최적화기 8세원 6축 Radar Canvas |
+| 군사 진형 | 군사 유닛 전략배치+진형 시뮬 | 단순 편제도만 | 고대군사진형시뮬레이터 6진형 6축 Radar Canvas |
+| 무역 수지 | 수출입 상세 분석+무역적자 추적 | 단순 교역만 | 도시무역수지분석기 8품 듀얼바 Canvas |
+| 문화재 관리 | 유물 가치평가+보존 시스템 | 단순 등록부만 | 왕실문화재가치매트릭스 10종 5축 히트맵 Canvas |
+| 치안 시스템 | 경찰서 범위+범죄율 히트맵 | 단순 범죄분석만 | 도시치안범죄분석도 8구역 6범죄 히트맵 Canvas |
+| 천문 관측 | 시간대별 하늘+관측 시스템 | 단순 첨성대만 | 고대천문관측기록관 12성좌 원형성도 Canvas |
+| 외교 연회 | 외교 이벤트+연회 시뮬 | 단순 연회관만 | 왕실연회외교시뮬레이터 8손님 만족매트릭스 Canvas |
+| 종합 경쟁력 | 도시 간 경쟁력 비교 대시보드 | 단순 발전보고서만 | 도시종합경쟁력지수 8KPI 반원게이지 Canvas |
+
+### 2단계: 신규 기능 (8개 Canvas)
+
+1. **왕실 세금 정책 최적화기** (Canvas 640x400): 토지세/인두세/상업세/관세/공물/어업세/광업세/특별세 8세원 × 6축(수입/공정/민심/효율/지속/성장) Radar + 수평바 S~D등급
+2. **고대 군사 진형 시뮬레이터** (Canvas 620x400): 학익진/어린진/봉시진/장사진/방원진/예봉진 6진형 × 6축(공격/방어/기동/사기/적응/지형) Radar + 효과 바차트
+3. **도시 무역 수지 분석기** (Canvas 640x400): 곡물/철/비단/도자기/약재/목재/금/소금 8교역품 수출/수입 듀얼바 + 순수지 라인 + 흑자/적자 색상코딩
+4. **왕실 문화재 가치 매트릭스** (Canvas 620x400): 고려청자/백자/금관/첨성대/석굴암/팔만대장경/무령왕릉/훈민정음/직지심체요절/반가사유상 10종 × 5축(역사/예술/학술/보존/희소) 히트맵
+5. **도시 치안 범죄 분석도** (Canvas 620x400): 8구역 × 6범죄유형(도적/사기/밀수/폭동/방화/반란) 히트맵 + 순찰커버리지 게이지 + S~D 안전등급
+6. **고대 천문 관측 기록관** (Canvas 640x400): 각/항/저/방/심/미/기/두/우/여/허/위 12성좌 원형성도 + 계절회전 + 성좌연결선 + 관측진행도
+7. **왕실 연회 외교 시뮬레이터** (Canvas 620x400): 8손님(고구려/백제/신라/당/일본/거란/발해/가야) 만족매트릭스 + 외교성과 게이지 + 연회메뉴 영향바
+8. **도시 종합 경쟁력 지수** (Canvas 620x400): 경제/군사/문화/외교/기술/복지/인프라/교육 8KPI 반원게이지 4×2 그리드 + 가중 종합스코어 + S~D등급
+
+### 퀴즈/업적/SFX
+
+- **퀴즈 +15문** (310→325): 세금정책, 군사진형, 무역수지, 문화재, 치안, 천문관측, 외교연회, 도시경쟁력 관련
+- **업적 +12종** (266→278): tax_optimizer, military_strategist, trade_baron, heritage_curator, security_chief, astronomer_royal, banquet_master, city_champion, quiz_v25_80, quiz_v25_perfect, v25_explorer, v25_completionist
+- **SFX 22종**: nav, tax_collect, tax_reform, military_charge, military_defend, trade_profit, trade_loss, heritage_discover, heritage_restore, security_alert, security_patrol, astro_observe, astro_discover, banquet_toast, banquet_diplomacy, compete_rank, compete_champion, quiz_correct, quiz_wrong, achieve, panel_open, section_flip
+- **키보드**: Shift+1 (패널 토글), Shift+2~9 (섹션 0~7), Shift+0 (퀴즈)
+
+### 3단계: 품질 검증
+
+| 검증 항목 | 결과 | 상세 |
+|-----------|------|------|
+| JS 문법 (node -c) | ✅ PASS | 1045줄 구문 오류 없음 |
+| JSON 검증 (manifest) | ✅ PASS | 106 shortcuts, 유효 JSON |
+| 외부 CDN 참조 | ✅ PASS | 0건 |
+| 개인정보 노출 | ✅ PASS | 0건 |
+| 하단 고정 네비바 | ✅ PASS | 없음 (우측 상단 right:426px 배치, UI불가침 규칙 준수) |
+| 파일 삭제 | ✅ PASS | 삭제된 파일 없음 |
+
+### 4단계: 수정 파일 목록
+
+- `v25_patch.js` (신규 생성, 1045줄, 8 Canvas+15퀴즈+12업적+22SFX+9키보드)
+- `index.html` (SEO v24→v25, v25 script 태그 추가, 퀴즈 310→325, 업적 266→278)
+- `sw.js` (캐시 v24→v25, v25_patch.js PRECACHE 추가)
+- `manifest.json` (v24→v25, 8 shortcuts 추가, 총 106개)
+- `AUTO_REPORT.md` (v25 보고서 추가)
+
+---

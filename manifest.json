@@ -1,7 +1,7 @@
 {
-  "name": "한국사 도시건설 v24.0",
+  "name": "한국사 도시건설 v25.0",
   "short_name": "도시건설",
-  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 왕실외교동맹분석기Canvas8국네트워크국력관계등급, 도시인구이동추적기Canvas6지역유입유출성장률밀도, 고대산업생산성지표Canvas10산업6축Radar효율성등급, 도시행복지수대시보드Canvas8요소반원게이지가중종합등급, 왕실계보가계도Canvas10왕트리왕권강도계승선, 도시계절경제순환Canvas5지표12월라인차트계절영역, 고대건축양식비교기Canvas8양식5축스택바시대별, 도시종합발전보고서Canvas8분야현재목표전기비교등급, 한국사퀴즈310문제, 266업적, 26x26 대형맵.",
+  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 왕실세금정책최적화기Canvas8세원6축Radar등급, 고대군사진형시뮬레이터Canvas6진형6축Radar효과바, 도시무역수지분석기Canvas8교역품수출입듀얼바순수지, 왕실문화재가치매트릭스Canvas10문화재5축히트맵, 도시치안범죄분석도Canvas8구역6범죄히트맵순찰게이지, 고대천문관측기록관Canvas12성좌원형성도계절회전, 왕실연회외교시뮬레이터Canvas8손님만족매트릭스외교게이지, 도시종합경쟁력지수Canvas8KPI반원게이지종합등급, 한국사퀴즈325문제, 278업적, 26x26 대형맵.",
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "any",
@@ -506,6 +506,46 @@
       "name": "종합발전보고서",
       "url": "index.html#report-v24",
       "description": "8분야 도시 종합 발전 보고서를 확인합니다"
+    },
+    {
+      "name": "세금정책최적화기",
+      "url": "index.html#tax-v25",
+      "description": "8세원 6축 Radar로 세금 정책을 최적화합니다"
+    },
+    {
+      "name": "군사진형시뮬레이터",
+      "url": "index.html#formation-v25",
+      "description": "6진형 6축 Radar로 군사 진형을 시뮬레이션합니다"
+    },
+    {
+      "name": "무역수지분석기",
+      "url": "index.html#trade-v25",
+      "description": "8교역품 수출입 듀얼바로 무역 수지를 분석합니다"
+    },
+    {
+      "name": "문화재가치매트릭스",
+      "url": "index.html#heritage-v25",
+      "description": "10문화재 5축 히트맵으로 가치를 평가합니다"
+    },
+    {
+      "name": "치안범죄분석도",
+      "url": "index.html#security-v25",
+      "description": "8구역 6범죄 히트맵과 순찰 게이지를 분석합니다"
+    },
+    {
+      "name": "천문관측기록관",
+      "url": "index.html#astro-v25",
+      "description": "12성좌 원형 성도와 관측 기록을 확인합니다"
+    },
+    {
+      "name": "연회외교시뮬레이터",
+      "url": "index.html#banquet-v25",
+      "description": "8손님 만족 매트릭스와 외교 성과를 시뮬레이션합니다"
+    },
+    {
+      "name": "종합경쟁력지수",
+      "url": "index.html#compete-v25",
+      "description": "8KPI 반원 게이지로 종합 경쟁력을 평가합니다"
     }
   ]
 }
