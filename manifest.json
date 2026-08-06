@@ -1,7 +1,7 @@
 {
-  "name": "한국사 도시건설 v25.0",
+  "name": "한국사 도시건설 v26.0",
   "short_name": "도시건설",
-  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 왕실세금정책최적화기Canvas8세원6축Radar등급, 고대군사진형시뮬레이터Canvas6진형6축Radar효과바, 도시무역수지분석기Canvas8교역품수출입듀얼바순수지, 왕실문화재가치매트릭스Canvas10문화재5축히트맵, 도시치안범죄분석도Canvas8구역6범죄히트맵순찰게이지, 고대천문관측기록관Canvas12성좌원형성도계절회전, 왕실연회외교시뮬레이터Canvas8손님만족매트릭스외교게이지, 도시종합경쟁력지수Canvas8KPI반원게이지종합등급, 한국사퀴즈325문제, 278업적, 26x26 대형맵.",
+  "description": "고조선부터 근대까지 한국사 5천년을 도시로 체험하는 교육용 심시티. 수자원관리시스템Canvas8수원6축Radar등급, 고대학당교육체계Canvas6학당6축Radar성적표, 도시환경오염도분석기Canvas8구역6오염원히트맵정화게이지, 첩보정보망운영도Canvas8적국네트워크그래프정보지표, 왕실제례의식시뮬레이터Canvas8제례6축Radar계절효과, 시장경제물가지수Canvas10품목12개월꺾은선, 도성방어축성시뮬레이터Canvas10축성6축Radar방어랭킹, 도시종합문명지수Canvas8KPI반원게이지가중종합등급, 한국사퀴즈340문제, 290업적, 26x26 대형맵.",
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "any",
@@ -546,6 +546,46 @@
       "name": "종합경쟁력지수",
       "url": "index.html#compete-v25",
       "description": "8KPI 반원 게이지로 종합 경쟁력을 평가합니다"
+    },
+    {
+      "name": "수자원관리시스템",
+      "url": "index.html#water-v26",
+      "description": "8수원 6축 Radar로 수자원을 관리합니다"
+    },
+    {
+      "name": "고대학당교육체계",
+      "url": "index.html#academy-v26",
+      "description": "6학당 6축 Radar로 교육 체계를 분석합니다"
+    },
+    {
+      "name": "환경오염도분석기",
+      "url": "index.html#pollution-v26",
+      "description": "8구역 6오염원 히트맵과 정화 게이지를 분석합니다"
+    },
+    {
+      "name": "첩보정보망운영도",
+      "url": "index.html#espionage-v26",
+      "description": "8적국 네트워크 그래프로 첩보망을 운영합니다"
+    },
+    {
+      "name": "왕실제례의식시뮬",
+      "url": "index.html#ritual-v26",
+      "description": "8제례 6축 Radar로 계절별 의식을 시뮬레이션합니다"
+    },
+    {
+      "name": "시장경제물가지수",
+      "url": "index.html#market-v26",
+      "description": "10품목 12개월 꺾은선 그래프로 물가를 추적합니다"
+    },
+    {
+      "name": "도성방어축성시뮬",
+      "url": "index.html#fortress-v26",
+      "description": "10축성 6축 Radar로 방어 체계를 시뮬레이션합니다"
+    },
+    {
+      "name": "종합문명지수",
+      "url": "index.html#civilization-v26",
+      "description": "8KPI 반원 게이지로 종합 문명 지수를 평가합니다"
     }
   ]
 }

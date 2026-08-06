@@ -1832,3 +1832,54 @@ Citizen Happiness(5지표), Campaign(8종), SFX 6종, Keyboard Shortcuts +5
 - `AUTO_REPORT.md` (v25 보고서 추가)
 
 ---
+
+## v26.0 — 2026-08-06
+
+### 1단계: 벤치마킹
+
+| 비교 대상 | 강점 | 도입 방향 |
+|-----------|------|-----------|
+| SimCity (EA) | 수자원/하수 시스템, 환경오염 시뮬레이션, 시장경제 물가 변동 | 수자원관리시스템 Canvas 8수원 Radar + 환경오염도 히트맵 + 물가지수 꺾은선 |
+| TheoTown | 교육시설 체계, 도시방어 레이어, 종합문명지수 대시보드 | 학당교육체계 6종 Radar + 축성시뮬 10종 Radar + 종합문명지수 8KPI 게이지 |
+| Civilization VI | 첩보/스파이 시스템, 종교/제례 의식, 네트워크 그래프 시각화 | 첩보정보망 네트워크그래프 + 왕실제례 8종 Radar 계절효과 |
+
+### 2단계: 개발 내용 (8 Canvas + 15 퀴즈 + 12 업적 + 22 SFX)
+
+**v26_patch.js** (857줄, IIFE 패치 모듈)
+
+1. **수자원 관리 시스템** (Canvas 640x400): 8수원(산곡수로/저수지/관개수로/물레방아/우물/빗물집수/지하수맥/약수터) 6축 Radar(수량/수질/안정성/관개효율/정화력/접근성) + S~D등급
+2. **고대 학당 교육 체계** (Canvas 620x400): 6학당(향교/성균관/서원/국자감/화랑도/서당) 6축 Radar(학문깊이/교육범위/인재배출/학술연구/문화전파/사회기여) + 성적표
+3. **도시 환경 오염도 분석기** (Canvas 640x400): 8구역 × 6오염원(매연/수질/토양/소음/악취/폐기물) 히트맵 + 정화 반원게이지
+4. **첩보 정보망 운영도** (Canvas 640x400): 8적국(고구려/백제/신라/당/일본/거란/발해/가야) 네트워크 그래프 + 정보지표 바
+5. **왕실 제례 의식 시뮬레이터** (Canvas 620x400): 8제례(종묘제/사직제/대보단/우사제/기우제/석전제/관례/제천의식) 6축 Radar + 계절효과
+6. **시장 경제 물가 지수** (Canvas 640x400): 10품목(쌀/보리/비단/면포/소금/철/도자기/약재/목재/교역품) × 12개월 꺾은선 차트
+7. **도성 방어 축성 시뮬레이터** (Canvas 620x400): 10축성(토성/목책/석성/산성/읍성/도성/이중성벽/해자/옹성/치성) 6축 Radar(방어력/내구성/건설비/수비병력/전략가치/확장성) + 방어 랭킹
+8. **도시 종합 문명 지수** (Canvas 620x400): 경제/군사/문화/외교/기술/복지/인프라/교육 8KPI 반원게이지 4×2 그리드 + 가중 종합스코어 + S~D등급
+
+### 퀴즈/업적/SFX
+
+- **퀴즈 +15문** (325→340): 수자원관리, 학당교육, 환경오염, 첩보정보, 제례의식, 물가지수, 축성방어, 종합문명 관련
+- **업적 +12종** (278→290): water_master, academy_scholar, eco_guardian, spy_master, ritual_keeper, market_analyst, fortress_builder, civilization_sage, quiz_v26_80, quiz_v26_perfect, v26_explorer, v26_completionist
+- **SFX 22종**: nav, water_flow, water_purify, academy_bell, academy_graduate, pollution_alert, pollution_clean, spy_intercept, spy_deploy, ritual_chant, ritual_blessing, market_trade, market_crash, fortress_build, fortress_defend, civilization_advance, civilization_peak, quiz_correct, quiz_wrong, achieve, panel_open, section_flip
+- **키보드**: Shift+Q (패널 토글), Shift+W/E/R/T/Y/U/I/O (섹션 0~7), Shift+P (퀴즈)
+
+### 3단계: 품질 검증
+
+| 검증 항목 | 결과 | 상세 |
+|-----------|------|------|
+| JS 문법 (node -c) | ✅ PASS | 857줄 구문 오류 없음 |
+| JSON 검증 (manifest) | ✅ PASS | 114 shortcuts, 유효 JSON |
+| 외부 CDN 참조 | ✅ PASS | 0건 |
+| 개인정보 노출 | ✅ PASS | 0건 |
+| 하단 고정 네비바 | ✅ PASS | 없음 (우측 상단 right:466px 배치, UI불가침 규칙 준수) |
+| 파일 삭제 | ✅ PASS | 삭제된 파일 없음 |
+
+### 4단계: 수정 파일 목록
+
+- `v26_patch.js` (신규 생성, 857줄, 8 Canvas+15퀴즈+12업적+22SFX+10키보드)
+- `index.html` (SEO v25→v26, v26 script 태그 추가, 퀴즈 325→340, 업적 278→290)
+- `sw.js` (캐시 v25→v26, v26_patch.js PRECACHE 추가)
+- `manifest.json` (v25→v26, 8 shortcuts 추가, 총 114개)
+- `AUTO_REPORT.md` (v26 보고서 추가)
+
+---
